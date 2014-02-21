@@ -1,11 +1,30 @@
 package com.example.itemfinder;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import nr.co.dv297.gradebuddy.ContentHolder;
+import nr.co.dv297.gradebuddy.GradeListActivity;
+import nr.co.dv297.gradebuddy.R;
+import nr.co.dv297.gradebuddy.Subject;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class MainActivity extends Activity {
 
+	private ArrayAdapter<String> adapter; // Used to search for class list.
+	private ListView itemListView;
+	
+	private static DataSource dataSource;
+
+
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,4 +39,40 @@ public class MainActivity extends Activity {
         return true;
     }
     
+	public void initList(){
+		List<Item> items_list = dataSource.getAllItems();
+		ArrayList<String> items_string = new ArrayList<String>();
+		itemListView = (ListView) findViewById(R.id.itemListView);
+		if(items_list.size() != 0){
+			for(int x = 0; x<items_list.size(); x++){
+				items_string.add(items_list.get(x).getName());
+			}
+			adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, items_string);
+			
+			itemListView.setAdapter(adapter);
+			
+			itemListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> parent, View arg1, int position,
+						long arg3) {
+//					//Intent i = new Intent(arg1.getContext(), GradeListActivity.class);
+//			        //final String item = (String) parent.getItemAtPosition(position);
+//					//GradeListActivity.setTitle(item);
+//					//GradeListActivity.setSubject(new Subject(ContentHolder.getStudent().getName(), item, "ABSOLUTE")); // FIX THIS TEMPORARY CODE.
+//					//startActivity(i);
+//					
+				}
+				
+			});
+		}
+	}
+	
+	public void submitButtonClick(View view){
+		
+	}
+	
+	public void addButtonClick(View view){
+		
+	}
 }
