@@ -23,7 +23,11 @@
 		       android:id="@+id/ItemEditText"
 		       
 		       android:hint="Add New Item"
+		       
+		       android:focusable="true"
+		       android:focusableInTouchMode="true"
 	           
+		       android:singleLine="true"
 	           />
 	       
 	       <TextView 
@@ -45,6 +49,8 @@
 		       
 		       android:hint="Add Location of Object"
 	           
+	           android:focusable="true"
+		       android:focusableInTouchMode="true"
 	           />
 	       
 	       <TextView 
@@ -64,6 +70,11 @@
 		       android:id="@+id/KeywordsEditText"
 		       
 		       android:hint="Add Keywords"
+		       
+		       android:focusable="true"
+		       android:focusableInTouchMode="true"
+		       
+		       android:singleLine="true"
 	           />
 	<RelativeLayout 
 	    android:layout_width="fill_parent"
@@ -85,7 +96,6 @@
 			    android:layout_weight="0.5"
 			    android:layout_height="wrap_content"
 			    android:text="Return" 
-			    
 			    android:onClick="returnClick"
 			    
 			    />
