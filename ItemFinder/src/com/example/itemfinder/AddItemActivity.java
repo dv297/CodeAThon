@@ -27,9 +27,9 @@ public class AddItemActivity extends Activity {
 	}
 	
 	public void addItemSubmissionClick(View view){
-		EditText addItemEditText = (EditText) findViewById(R.id.addItemEditText);
-		EditText addLocationEditText = (EditText) findViewById(R.id.addLocationEditText);
-		EditText addKeywordsEditText = (EditText) findViewById(R.id.addKeywordsEditText);
+		EditText addItemEditText = (EditText) findViewById(R.id.ItemEditText);
+		EditText addLocationEditText = (EditText) findViewById(R.id.LocationEditText);
+		EditText addKeywordsEditText = (EditText) findViewById(R.id.KeywordsEditText);
 		
 		
 		String item_name = addItemEditText.getText().toString();
@@ -50,12 +50,13 @@ public class AddItemActivity extends Activity {
 		}
 		else{
 			ContentHolder.getDS().createItem(new Item(item_name, item_location, keywords));
+			setResult(RESULT_OK);
 			finish();
 		}
 	}
 	
-	public void cameraButtonClick(){
-		
+	public void returnClick(View view){
+		finish();
 	}
 
 }

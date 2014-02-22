@@ -16,18 +16,13 @@
 			        android:text="\t\t\tItem:" 
 		        />
 		       
-		       <EditText 
+		       <TextView 
 		           android:layout_width="fill_parent"
 			       android:layout_height="wrap_content"
 			     	       
-			       android:id="@+id/addItemEditText"
+			       android:id="@+id/ItemEditText"
 			       
-			       android:hint="Item"
-			       
-			       android:focusable="true"
-		       	   android:focusableInTouchMode="true"
-		       	   
-		           android:singleLine="true"
+	
 		           />
 		       
 		       <TextView 
@@ -37,45 +32,34 @@
 			      
 			        android:textSize="16sp"
 			        
-			        android:text="\t\t\tAdd Location"        
+			        android:text="\t\t\tLocation"        
 		        />
 		       
-		       <EditText 
+		       <TextView 
 		           android:layout_width="fill_parent"
 			       android:layout_height="wrap_content"
 			       
 			       
-			       android:id="@+id/addLocationEditText"
-			       
-			       android:hint="Add Location of Object"
-		           
-		           android:focusable="true"
-		       	   android:focusableInTouchMode="true"
+			       android:id="@+id/LocationEditText"
 		           />
+	       
+	       <TextView 
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        
+		        
+		        android:textSize="16sp"
+		        
+		        android:text="\t\t\tKeywords (Optional)"        
+	        />
 		       
 		       <TextView 
-			        android:layout_width="fill_parent"
-			        android:layout_height="wrap_content"
-			        
-			        
-			        android:textSize="16sp"
-			        
-			        android:text="\t\t\tKeywords (Optional)"   
-			             
-		        />
-		       
-		       <EditText 
 		           android:layout_width="fill_parent"
 			       android:layout_height="wrap_content"
 			      
-			       android:id="@+id/addKeywordsEditText"
+			       android:id="@+id/KeywordsEditText"
 			       
-			       android:hint="Add Keywords"
-			       
-			       android:focusable="true"
-		       	   android:focusableInTouchMode="true"
-		       	   
-		        	android:singleLine="true"
+			       android:hint="Keywords"
 		           />
 		       
 		<RelativeLayout 
@@ -123,9 +107,6 @@
 					    android:layout_above="@id/editClick"
 					    
 					    android:onClick="deleteClick"
-					    
 					    />
-				
 		</RelativeLayout>		
-		
 </LinearLayout>

@@ -90,4 +90,8 @@ public class Item implements Parcelable {
     	item_location = in.readString();
     	keywords = in.readString();
     }
+    
+    public String toString(){
+    	return item_name + " " + item_location + " " + keywords;
+    }
 }

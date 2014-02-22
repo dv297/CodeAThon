@@ -20,7 +20,7 @@
 	           android:layout_width="fill_parent"
 		       android:layout_height="wrap_content"
 		     	       
-		       android:id="@+id/addItemEditText"
+		       android:id="@+id/ItemEditText"
 		       
 		       android:hint="Add New Item"
 		       
@@ -45,7 +45,7 @@
 		       android:layout_height="wrap_content"
 		       
 		       
-		       android:id="@+id/addLocationEditText"
+		       android:id="@+id/LocationEditText"
 		       
 		       android:hint="Add Location of Object"
 	           
@@ -67,7 +67,7 @@
 	           android:layout_width="fill_parent"
 		       android:layout_height="wrap_content"
 		      
-		       android:id="@+id/addKeywordsEditText"
+		       android:id="@+id/KeywordsEditText"
 		       
 		       android:hint="Add Keywords"
 		       
@@ -96,7 +96,6 @@
 			    android:layout_weight="0.5"
 			    android:layout_height="wrap_content"
 			    android:text="Return" 
-			    
 			    android:onClick="returnClick"
 			    
 			    />
