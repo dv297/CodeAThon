@@ -48,16 +48,6 @@ public class MainActivity extends Activity {
 			}
         });
         
-        /*lstView.setOnItemLongClickListener(new OnItemLongClickListener() {
-			@Override
-			public boolean onItemLongClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				if(position == 0)
-					return true;
-				return false;
-			}
-        });*/
-        
         registerForContextMenu(lstView);
     }
     
