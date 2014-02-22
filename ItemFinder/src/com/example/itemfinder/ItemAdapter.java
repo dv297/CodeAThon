@@ -67,6 +67,13 @@ public class ItemAdapter extends BaseAdapter implements Filterable {
 		inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 	
+	public void clear() {
+		objects.clear();
+		objectsOriginal.clear();
+		
+		notifyDataSetChanged();
+	}
+	
 	public void add(Item item) {
 		objectsOriginal.add(item);
 		Collections.sort(objectsOriginal);

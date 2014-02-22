@@ -148,9 +148,25 @@ public class MainActivity extends Activity {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		AlertDialog.Builder dlg = new AlertDialog.Builder(this);
 		switch(item.getItemId()) {
+		case R.id.action_stats:
+			 dlg.setTitle("Stats");
+			 dlg.setMessage("You have " + (adapter.getCount() - 1) + " items.");
+			 dlg.setPositiveButton("OK", null);
+			break;
+		case R.id.action_nuke:
+			dlg.setTitle("Warning!");
+			dlg.setMessage("This will delete ALL of your items. Continue?");
+			dlg.setPositiveButton("Yes", new OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					Tools.clearItems();
+				}
+			});
+			dlg.setNegativeButton("No", null);
+			break;
 		case R.id.action_about:
-			AlertDialog.Builder dlg  = new AlertDialog.Builder(this);
 			dlg.setTitle("Item Finder");
 		    dlg.setMessage("This application was created for the first Boeing Code-a-Thon competition by:\n\n" +
 		    			   "Mathew Velasquez\n" +
@@ -158,10 +174,10 @@ public class MainActivity extends Activity {
 		    			   "Tyler Wagner"
 		    			   );
 		    dlg.setPositiveButton("OK", null);
-		    dlg.setCancelable(true);
-		    dlg.create().show();
 			break;
 		}
+		dlg.setCancelable(true);
+		dlg.create().show();
 		return true;
 	}
 	
