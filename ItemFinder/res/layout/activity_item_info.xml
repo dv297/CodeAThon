@@ -74,7 +74,6 @@
 			<Button
 			    android:id="@+id/btnFinish"
 			    
-			    android:onClick="finishClick"
 			    
 			    android:layout_width="fill_parent"
 			    android:layout_height="wrap_content"
@@ -88,9 +87,7 @@
 			    android:layout_width="fill_parent"
 			    
 			    android:id="@+id/editClick"
-			    
-			    android:onClick="editClick"
-			    
+			    			    
 			    android:text="Edit"
 			    
 			    android:layout_above="@id/btnFinish"
@@ -100,7 +97,6 @@
 			    android:id="@+id/delete"
 			    android:layout_width="fill_parent"
 			    
-			    android:onClick="deleteClick"
 			    
 			    android:layout_height="wrap_content"
 			    android:text="Delete Item" 

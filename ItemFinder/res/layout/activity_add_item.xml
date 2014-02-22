@@ -86,7 +86,6 @@
 			    android:layout_height="wrap_content"
 			    android:text="Return" 
 			    
-			    android:onClick="cancelClick"
 			    />
 		    
 			<Button
@@ -98,7 +97,6 @@
 			    
 			    
 			    android:layout_height="wrap_content"
-			    android:onClick="addItemSubmissionClick"
 			    android:text="@string/add_item_button" />
 
 
