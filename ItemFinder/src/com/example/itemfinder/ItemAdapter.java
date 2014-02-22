@@ -100,7 +100,7 @@ public class ItemAdapter extends BaseAdapter implements Filterable {
 		if(position == 0) {
 			return null;
 		}
-		return objects.get(position);
+		return objects.get(position - 1);
 	}
 	
 	@Override

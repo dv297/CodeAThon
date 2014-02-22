@@ -93,8 +93,7 @@ public class MainActivity extends Activity {
 		switch(menuItem.getItemId()) {
 		case R.id.context_edit:
 			Intent intent = new Intent(info.targetView.getContext(), ItemInfoActivity.class);
-			Item item = ContentHolder.getDS().getItemByName(adapter.getItem(info.position).getName());
-			intent.putExtra("item", item);
+			intent.putExtra("item", adapter.getItem(info.position));
 	        startActivity(intent);
 			break;
 			
@@ -142,8 +141,7 @@ public class MainActivity extends Activity {
 					startActivity(intent);
 				} else {
 					Intent intent = new Intent(view.getContext(), ItemInfoActivity.class);
-					Item item = ContentHolder.getDS().getItemByName((String)parent.getItemAtPosition(position));
-					intent.putExtra("item", item);
+					intent.putExtra("item", adapter.getItem(position));
 			        startActivity(intent);
 				}
 			}
