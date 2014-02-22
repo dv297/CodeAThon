@@ -65,6 +65,8 @@ public class MainActivity extends Activity {
 		itemListView.setOnItemClickListener(clickListener);
 		registerForContextMenu(itemListView);
 		
+		itemListView.setCacheColorHint(R.color.notepad_color);
+		
         EditText search = (EditText)findViewById(R.id.searchEditText);
         search.addTextChangedListener(new TextWatcher() {
 

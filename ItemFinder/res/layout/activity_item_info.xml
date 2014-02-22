@@ -71,31 +71,25 @@
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"   
 	    
-	    >
-		    
-			<Button
-			    android:id="@+id/btnFinish"
-			    
-			    
-			    android:layout_width="fill_parent"
+	    >	
+			<TableRow 
 			    android:layout_height="wrap_content"
+			    android:layout_width="fill_parent"
+			    android:orientation="horizontal"
+			    android:layout_alignParentBottom="true"
 			    
-			    android:layout_alignParentBottom="true"			    
-			    android:text="Return" 
-			    
-			    android:onClick="finishClick"
-			    />    		
-			
+			    >
 			<Button 
 			    
 			    android:layout_height="wrap_content"
-			    android:layout_width="fill_parent"
+			    android:layout_width="0dp"
+			    android:layout_weight="0.50"
 			    
 			    android:id="@+id/editClick"
 			    			    
 			    android:text="Edit"
 			    
-			    android:layout_above="@id/btnFinish"
+			    android:layout_alignParentBottom="true"
 			    
 			    android:onClick="editClick"
 			    
@@ -103,7 +97,8 @@
 			
 			<Button
 			    android:id="@+id/delete"
-			    android:layout_width="fill_parent"
+			    android:layout_width="0dp"
+			    android:layout_weight="0.5"
 			    
 			    
 			    android:layout_height="wrap_content"
@@ -114,7 +109,7 @@
 			    android:onClick="deleteClick"
 			    
 			    />
-			
+			</TableRow>
 	
 	</RelativeLayout>
 	

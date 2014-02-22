@@ -26,12 +26,11 @@
    
     <ListView
         android:id="@+id/itemListView"
-        
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/searchEditText"
-        
         android:isScrollContainer="false"
+         android:cacheColorHint="#00000000"
         />
 		    
 </LinearLayout>
