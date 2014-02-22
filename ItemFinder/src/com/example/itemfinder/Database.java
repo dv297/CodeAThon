@@ -1,7 +1,9 @@
 package com.example.itemfinder;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -39,6 +41,14 @@ public class Database {
 		return database.insert("items", null, values) == -1;
 	}
 	
+	public boolean updateItem(String name, Item item) {
+		ContentValues values = new ContentValues();
+		values.put("name", item.getName());
+		values.put("location", item.getLocation());
+		values.put("keywords", item.getKeywords());
+		return database.update("table", values, "name = ?", new String[]{name}) == -1;
+	}
+
 	public void deleteItem(String item) {
 		database.delete("items", "name = ?", new String[]{item});
 	}
@@ -47,8 +57,8 @@ public class Database {
 		deleteItem(item.getName());
 	}
 	
-	public List<Item> getAllItems() {
-		List<Item> items = new LinkedList<Item>();
+	public ArrayList<Item> getAllItems() {
+		ArrayList<Item> items = new ArrayList<Item>();
 		
 		Cursor cursor = database.rawQuery("SELECT * FROM items", null);
 		if(cursor.moveToFirst()) {
@@ -72,20 +82,6 @@ public class Database {
 		return null;
 	}
 	
-	public Item findItems(String search) {
-		List<Item> items = new LinkedList<Item>();
-		Cursor cursor = database.rawQuery("SELECT * FROM items WHERE CONTAINS(name, ?) OR CONTAINS(keywords, ?)",
-										  new String[]{search, search});
-		if(cursor.moveToFirst()) {
-			while(!cursor.isAfterLast()) {
-				items.add(cursorToItem(cursor));
-				cursor.moveToNext();
-			}
-			cursor.close();
-		}
-		return null;
-	}
-	
 	private Item cursorToItem(Cursor cursor) {
 		Item item = new Item();
 		item.setName(cursor.getString(cursor.getColumnIndexOrThrow("name")));
@@ -93,8 +89,5 @@ public class Database {
 		item.setKeywords(cursor.getString(cursor.getColumnIndexOrThrow("keywords")));
 		return item;
 	}
-	
-
-
 } 
 

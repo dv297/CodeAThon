@@ -25,6 +25,7 @@ public class ItemInfoActivity extends Activity {
 		TextView itemTextView = (TextView) findViewById(R.id.ItemTextView);
 		TextView locationTextView = (TextView) findViewById(R.id.LocationTextView);
 		TextView keywordsTextView = (TextView) findViewById(R.id.KeywordsTextView);
+		//TextView keywordLabelTextView = (TextView) findViewById(R.id.keywordLabelTextView);
 		
 		String name = item.getName();
 		String location = item.getLocation();
@@ -33,7 +34,9 @@ public class ItemInfoActivity extends Activity {
 		itemTextView.setText(name);
 		locationTextView.setText(location);
 		keywordsTextView.setText(keywords);
-		
+		if(keywords.length()==0){
+			//keywordLabelTextView.setText("");
+		}
 	}
 
 	@Override

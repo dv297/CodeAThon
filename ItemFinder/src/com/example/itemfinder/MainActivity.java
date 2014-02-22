@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.app.AlertDialog;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,19 +20,41 @@ import android.widget.ListView;
 
 public class MainActivity extends Activity {
 
-	private ArrayAdapter<String> adapter; // Used to search for class list.
+	private ItemAdapter adapter; // Used to search for class list.
 	private ListView itemListView;
 	@SuppressWarnings("unused")
 	private ContentHolder content_holder; // This is necessary, DO NOT DELETE
-	
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 		content_holder = new ContentHolder(getBaseContext());
-		
-		registerForContextMenu((ListView)findViewById(R.id.itemListView));
+
         initList();
+        
+        //Setup search
+        ListView list = (ListView)findViewById(R.id.itemListView);
+		registerForContextMenu(list);
+        EditText search = (EditText)findViewById(R.id.searchEditText);
+        search.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void afterTextChanged(Editable e) {
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				MainActivity.this.adapter.getFilter().filter(s);
+			}
+        	
+        });
     }
 
     @Override
@@ -57,7 +81,7 @@ public class MainActivity extends Activity {
 	public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
 		if(info.position > 0) {
-			menu.setHeaderTitle(adapter.getItem(info.position));
+			menu.setHeaderTitle(adapter.getItem(info.position).getName());
 			super.onCreateContextMenu(menu, view, menuInfo);
 		    getMenuInflater().inflate(R.menu.context_menu, menu);
 		}
@@ -69,7 +93,7 @@ public class MainActivity extends Activity {
 		switch(menuItem.getItemId()) {
 		case R.id.context_edit:
 			Intent intent = new Intent(info.targetView.getContext(), ItemInfoActivity.class);
-			Item item = ContentHolder.getDS().getItemByName(adapter.getItem(info.position));
+			Item item = ContentHolder.getDS().getItemByName(adapter.getItem(info.position).getName());
 			intent.putExtra("item", item);
 	        startActivity(intent);
 			break;
@@ -129,16 +153,9 @@ public class MainActivity extends Activity {
 		ContentHolder.getDS().createItem(new Item("sofa", "living room"));
 		ContentHolder.getDS().createItem(new Item("zebra", "barn"));
 		
-		List<Item> items_list = ContentHolder.getDS().getAllItems();
-		ArrayList<String> items_string = new ArrayList<String>();
+		ArrayList<Item> items_list = ContentHolder.getDS().getAllItems();
 		itemListView = (ListView) findViewById(R.id.itemListView);
-		items_string.add("Add New Item...");
-		if(items_list.size() != 0){
-			for(Item i : items_list) {
-				items_string.add(i.getName());
-			}
-		}
-		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, items_string);
+		adapter = new ItemAdapter(this, items_list);
 		itemListView.setAdapter(adapter);
 		itemListView.setOnItemClickListener(clickListener);
 	}
@@ -153,14 +170,13 @@ public class MainActivity extends Activity {
 	 * The results of the AddItemActivity
 	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		     if(resultCode == RESULT_OK){      
-		    	 // This means that the user did everything to add an item.
-		    	 // Item adding is done in AddItemActivity
-		    	 // We just have to refresh the list.
-		 		 initList();
-		     }
-		     if (resultCode == RESULT_CANCELED) {    
-		         //Write your code if there's no result
-		     }
-		  }
+	    if(resultCode == RESULT_OK) {
+	    	// This means that the user did everything to add an item.
+	    	// Item adding is done in AddItemActivity
+	    	// We just have to refresh the list.
+	 		initList();
+	    } else if (resultCode == RESULT_CANCELED) {    
+	       //Write your code if there's no result
+	    }
+	}
 }
