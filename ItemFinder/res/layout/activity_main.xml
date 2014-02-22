@@ -1,4 +1,4 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,47 +10,25 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
-   
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
 
-        <EditText
-            android:id="@+id/searchEditText"
-            android:layout_width="0dp"
-            
-            android:layout_weight="0.80"
-            
-            android:layout_height="match_parent"
-            android:layout_gravity="left"
-            android:hint="@string/search_edit_text_hint"
-            android:singleLine="true" />
-
-        <Button
-            android:id="@+id/addItemButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:onClick="addButtonClick"
-            
-            
-            android:layout_weight="0.20"
-            
-            android:text="@string/add_item_button" 
-            />
-         
-        </TableRow>
+	<EditText
+	    android:id="@+id/searchEditText"
+	    
+	    android:layout_width="match_parent"
+	    android:layout_height="50dp"
+	    android:hint="@string/search_edit_text_hint"
+	    android:singleLine="true"
+	    />
 
    
     <ListView
+        android:id="@+id/itemListView"
         
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/searchEditText"
         
-        android:layout_gravity="center_vertical"
-       
-        android:id="@+id/itemListView"
+        android:isScrollContainer="false"
         />
 		    
-</TableLayout>
+</LinearLayout>
