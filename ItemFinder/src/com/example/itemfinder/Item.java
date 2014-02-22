@@ -8,7 +8,6 @@ public class Item implements Parcelable {
 	private String item_name;
 	private String item_location;
 	private String keywords;
-	private long id;
 	
 	public Item(){
 		
@@ -56,14 +55,6 @@ public class Item implements Parcelable {
 		keywords = _keywords;
 	}
 	
-	public long getId(){
-		return id;
-	}
-	
-	public void setId(long _id){
-		id = _id;
-	}
-	
 	public boolean equals(Item a){
 		boolean name = a.item_name.equals(this.item_name);
 		boolean location = a.item_location.equals(this.item_location);
@@ -82,7 +73,6 @@ public class Item implements Parcelable {
 		dest.writeString(item_name);
 		dest.writeString(item_location);
 		dest.writeString(keywords);
-		dest.writeLong(id);
 	}
 	
 	public static final Parcelable.Creator<Item> CREATOR = new Parcelable.Creator<Item>() {
@@ -99,6 +89,5 @@ public class Item implements Parcelable {
     	item_name = in.readString();
     	item_location = in.readString();
     	keywords = in.readString();
-    	id = in.readLong();
     }
 }

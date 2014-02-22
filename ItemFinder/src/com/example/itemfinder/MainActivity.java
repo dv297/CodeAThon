@@ -29,8 +29,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 		content_holder = new ContentHolder(getBaseContext());
+		
+		registerForContextMenu((ListView)findViewById(R.id.itemListView));
         initList();
-        registerForContextMenu((ListView)findViewById(R.id.itemListView));
     }
 
     @Override
@@ -123,13 +124,17 @@ public class MainActivity extends Activity {
 			}
 		};
 		
+		ContentHolder.getDS().createItem(new Item("toilet", "bathroom"));
+		ContentHolder.getDS().createItem(new Item("sofa", "living room"));
+		ContentHolder.getDS().createItem(new Item("zebra", "barn"));
+		
 		List<Item> items_list = ContentHolder.getDS().getAllItems();
 		ArrayList<String> items_string = new ArrayList<String>();
 		itemListView = (ListView) findViewById(R.id.itemListView);
 		items_string.add("Add New Item...");
 		if(items_list.size() != 0){
-			for(int x = 0; x<items_list.size(); x++){
-				items_string.add(items_list.get(x).getName());
+			for(Item i : items_list) {
+				items_string.add(i.getName());
 			}
 		}
 		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, items_string);
@@ -160,5 +165,5 @@ public class MainActivity extends Activity {
 		         //Write your code if there's no result
 		     }
 		  }
-	}	
+	}
 }

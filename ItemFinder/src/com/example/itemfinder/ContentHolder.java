@@ -4,15 +4,15 @@ import android.content.Context;
 
 public class ContentHolder {
 
-	private static DataSource DS;
+	private static Database DS;
 	
 	public ContentHolder(Context context){
-		DS = new DataSource(context);
+		DS = new Database(context);
 		DS.open();
 
 	}
 	
-	public static DataSource getDS(){
+	public static Database getDS(){
 		return DS;
 	}
 }
