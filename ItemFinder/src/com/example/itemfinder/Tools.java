@@ -7,7 +7,7 @@ import android.content.DialogInterface.OnClickListener;
 
 public class Tools {
 	
-	public static void deleteItemDialog(final Item i, Context c, OnClickListener yes){
+	public static void deleteItemDialog(Context c, OnClickListener yes){
 		//TODO: i18n string
 		AlertDialog.Builder builder = new AlertDialog.Builder(c);
 		builder.setMessage("Are you sure you wish to delete this item?");
@@ -16,5 +16,32 @@ public class Tools {
 	        public void onClick(DialogInterface dialog, int id) {}
 		});
 		builder.show();
+	}
+	
+	//These functions modify both the database and the list.
+	public static boolean addItem(Item item) {
+		if(ContentHolder.getDS().createItem(item)) {
+			return true;
+		}
+		MainActivity.activity.adapter.add(item);
+		return false;
+	}
+	
+	public static boolean updateItem(String name, Item item) {
+		if(ContentHolder.getDS().updateItem(name, item)) {
+			return true;
+		}
+		MainActivity.activity.adapter.update(name, item);
+		return false;
+	}
+	
+	public static void deleteItem(String name) {
+		ContentHolder.getDS().deleteItem(name);
+		MainActivity.activity.adapter.remove(name);
+	}
+	
+	public static void deleteItem(Item item) {
+		ContentHolder.getDS().deleteItem(item);
+		MainActivity.activity.adapter.remove(item.getName());
 	}
 }

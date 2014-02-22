@@ -5,6 +5,8 @@ import java.util.List;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.app.AlertDialog;
 import android.text.Editable;
@@ -19,8 +21,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
-
-	private ItemAdapter adapter; // Used to search for class list.
+	public static MainActivity activity;
+	public ItemAdapter adapter; // Used to search for class list.
+	
 	private ListView itemListView;
 	@SuppressWarnings("unused")
 	private ContentHolder content_holder; // This is necessary, DO NOT DELETE
@@ -29,13 +32,39 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        activity = this;
 		content_holder = new ContentHolder(getBaseContext());
-
-        initList();
         
         //Setup search
-        ListView list = (ListView)findViewById(R.id.itemListView);
-		registerForContextMenu(list);
+		AdapterView.OnItemClickListener clickListener = new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) {
+				if(position == 0) {
+					Intent intent = new Intent(view.getContext(), AddItemActivity.class);
+					intent.putExtra("name", ((EditText)findViewById(R.id.searchEditText)).getText());
+					startActivity(intent);
+				} else {
+					Intent intent = new Intent(view.getContext(), ItemInfoActivity.class);
+					intent.putExtra("item", adapter.getItem(position));
+			        startActivity(intent);
+				}
+			}
+		};
+		
+		ContentHolder.getDS().createItem(new Item("toilet", "bathroom"));
+		ContentHolder.getDS().createItem(new Item("sofa", "living room"));
+		ContentHolder.getDS().createItem(new Item("zebra", "barn"));
+		
+		ArrayList<Item> items_list = ContentHolder.getDS().getAllItems();
+		adapter = new ItemAdapter(this, items_list);
+		
+		itemListView = (ListView)findViewById(R.id.itemListView);
+		itemListView.setAdapter(adapter);
+		itemListView.setOnItemClickListener(clickListener);
+		registerForContextMenu(itemListView);
+		
         EditText search = (EditText)findViewById(R.id.searchEditText);
         search.addTextChangedListener(new TextWatcher() {
 
@@ -66,14 +95,14 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onRestart() {
 		super.onRestart();
-		 initList();
+		 //initList();
 	}
 
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		 initList();
+		 //initList();
 	}
 
 	//Context menu for holding a list item
@@ -89,16 +118,22 @@ public class MainActivity extends Activity {
 	
 	@Override
 	public boolean onContextItemSelected(MenuItem menuItem) {
-		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuItem.getMenuInfo();
+		final AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuItem.getMenuInfo();
 		switch(menuItem.getItemId()) {
 		case R.id.context_edit:
-			Intent intent = new Intent(info.targetView.getContext(), ItemInfoActivity.class);
+			Intent intent = new Intent(info.targetView.getContext(), AddItemActivity.class);
 			intent.putExtra("item", adapter.getItem(info.position));
 	        startActivity(intent);
 			break;
 			
 		case R.id.context_delete:
-			System.out.println("delete");
+			Tools.deleteItemDialog(MainActivity.this, new OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					Tools.deleteItem(adapter.getItem(info.position));
+				}
+			});
+			
 			break;
 		}
 		return true;
@@ -129,34 +164,6 @@ public class MainActivity extends Activity {
 		}
 		return true;
 	}
-    
-	public void initList() {
-		AdapterView.OnItemClickListener clickListener = new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position,
-					long id) {
-				if(position == 0) {
-					Intent intent = new Intent(view.getContext(), AddItemActivity.class);
-					intent.putExtra("name", ((EditText)findViewById(R.id.searchEditText)).getText());
-					startActivity(intent);
-				} else {
-					Intent intent = new Intent(view.getContext(), ItemInfoActivity.class);
-					intent.putExtra("item", adapter.getItem(position));
-			        startActivity(intent);
-				}
-			}
-		};
-		
-		ContentHolder.getDS().createItem(new Item("toilet", "bathroom"));
-		ContentHolder.getDS().createItem(new Item("sofa", "living room"));
-		ContentHolder.getDS().createItem(new Item("zebra", "barn"));
-		
-		ArrayList<Item> items_list = ContentHolder.getDS().getAllItems();
-		itemListView = (ListView) findViewById(R.id.itemListView);
-		adapter = new ItemAdapter(this, items_list);
-		itemListView.setAdapter(adapter);
-		itemListView.setOnItemClickListener(clickListener);
-	}
 	
 	public void addButtonClick(View view) {
 		Intent intent = new Intent(view.getContext(), AddItemActivity.class);
@@ -172,8 +179,8 @@ public class MainActivity extends Activity {
 	    	// This means that the user did everything to add an item.
 	    	// Item adding is done in AddItemActivity
 	    	// We just have to refresh the list.
-	 		initList();
-	    } else if (resultCode == RESULT_CANCELED) {    
+	 		//initList();
+	    } else if (resultCode == RESULT_CANCELED) {
 	       //Write your code if there's no result
 	    }
 	}

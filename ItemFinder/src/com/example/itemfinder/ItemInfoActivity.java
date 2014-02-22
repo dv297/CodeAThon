@@ -57,12 +57,12 @@ public class ItemInfoActivity extends Activity {
 	}
 	
 	public void deleteClick(View view){
-		Tools.deleteItemDialog(item, ItemInfoActivity.this, new OnClickListener() {
+		Tools.deleteItemDialog(ItemInfoActivity.this, new OnClickListener() {
 			// Uses the Tools class, runs when the AlertDialog clicks on the positive button.
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO Auto-generated method stub
-				ContentHolder.getDS().deleteItem(item);
+				Tools.deleteItem(item);
 				finish();
 			}
 			
