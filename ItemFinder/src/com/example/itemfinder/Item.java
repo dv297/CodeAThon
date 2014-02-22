@@ -1,6 +1,9 @@
 package com.example.itemfinder;
 
-public class Item {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Item implements Parcelable {
 
 	private String item_name;
 	private String item_location;
@@ -61,4 +64,35 @@ public class Item {
 		boolean keywords = a.keywords.equals(this.keywords);
 		return name && location && keywords;
 	}
+
+	//Parcelable methods
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(item_name);
+		dest.writeString(item_location);
+		dest.writeString(keywords);
+		dest.writeLong(id);
+	}
+	
+	public static final Parcelable.Creator<Item> CREATOR = new Parcelable.Creator<Item>() {
+        public Item createFromParcel(Parcel in) {
+            return new Item(in);
+        }
+
+        public Item[] newArray(int size) {
+            return new Item[size];
+        }
+    };
+    
+    private Item(Parcel in) {
+    	item_name = in.readString();
+    	item_location = in.readString();
+    	keywords = in.readString();
+    	id = in.readLong();
+    }
 }
