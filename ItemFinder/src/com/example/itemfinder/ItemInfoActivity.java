@@ -50,6 +50,8 @@ public class ItemInfoActivity extends Activity {
 		
 		if(keywords.length()==0){
 			keywordLabelTextView.setText("");
+		} else {
+			keywordLabelTextView.setText("  Keywords");
 		}
 	}
 	

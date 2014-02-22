@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,17 +24,22 @@ public class AddItemActivity extends Activity {
 		
 		Bundle data = getIntent().getExtras();
 		item = (Item) data.getParcelable("item");
-		System.out.println("TAG: " + item);
 		
 		addItemEditText = (EditText) findViewById(R.id.ItemEditText);
 		addLocationEditText = (EditText) findViewById(R.id.LocationEditText);
 		addKeywordEditText = (EditText) findViewById(R.id.KeywordsEditText);
+		
+		Button submitButton = (Button)findViewById(R.id.addItemButton);
 		
 		if(item!=null){
 			addItemEditText.setText(item.getName());
 			addLocationEditText.setText(item.getLocation());
 			addKeywordEditText.setText(item.getKeywords());
 			beingEdited = true;
+			
+			submitButton.setText("Update Item");
+		} else {
+			submitButton.setText("Add Item");
 		}
 	}
 
