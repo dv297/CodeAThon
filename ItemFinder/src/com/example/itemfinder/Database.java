@@ -1,7 +1,9 @@
 package com.example.itemfinder;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -57,8 +59,8 @@ public class Database {
 		deleteItem(item.getName());
 	}
 	
-	public List<Item> getAllItems() {
-		List<Item> items = new LinkedList<Item>();
+	public ArrayList<Item> getAllItems() {
+		ArrayList<Item> items = new ArrayList<Item>();
 		
 		Cursor cursor = database.rawQuery("SELECT * FROM items", null);
 		if(cursor.moveToFirst()) {
@@ -82,20 +84,6 @@ public class Database {
 		return null;
 	}
 	
-	public Item findItems(String search) {
-		List<Item> items = new LinkedList<Item>();
-		Cursor cursor = database.rawQuery("SELECT * FROM items WHERE CONTAINS(name, ?) OR CONTAINS(keywords, ?)",
-										  new String[]{search, search});
-		if(cursor.moveToFirst()) {
-			while(!cursor.isAfterLast()) {
-				items.add(cursorToItem(cursor));
-				cursor.moveToNext();
-			}
-			cursor.close();
-		}
-		return null;
-	}
-	
 	private Item cursorToItem(Cursor cursor) {
 		Item item = new Item();
 		item.setName(cursor.getString(cursor.getColumnIndexOrThrow("name")));
@@ -103,8 +91,5 @@ public class Database {
 		item.setKeywords(cursor.getString(cursor.getColumnIndexOrThrow("keywords")));
 		return item;
 	}
-	
-
-
 } 
 
