@@ -1,11 +1,23 @@
 package com.example.itemfinder;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class AddItemActivity extends Activity {
@@ -13,6 +25,12 @@ public class AddItemActivity extends Activity {
 	private boolean ready_to_submit = false; // Determines whether or not all of the forms are completed with correct values.
 	private boolean beingEdited;
 	private Item item;
+	
+	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+	public static final int MEDIA_TYPE_IMAGE = 1;
+	private Uri fileUri;
+
+
 	
 	private EditText addItemEditText, addLocationEditText, addKeywordEditText;
 	
@@ -85,8 +103,23 @@ public class AddItemActivity extends Activity {
 		}
 	}
 	
-	public void returnClick(View view){
-		finish();
+	
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		
+	}
+
+	public void cameraClick(View view){
+		
+		Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		
+		
+		if (i.resolveActivity(getPackageManager()) != null) {
+	        startActivityForResult(i, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+	    }
 	}
 
 }
