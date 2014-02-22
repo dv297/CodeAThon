@@ -76,6 +76,26 @@ public class ItemAdapter extends BaseAdapter implements Filterable {
 		}
 	}
 	
+	public void update(String name, Item item) {
+		int i = 0;
+		for(; i < objects.size(); i++) {
+			if(name.equals(objectsOriginal.get(i).getName())) {
+				objectsOriginal.set(i, new Item(item));
+				Collections.sort(objectsOriginal);
+				break;
+			}
+		}
+		if(i == objects.size())
+			return;
+		for(i = 0; i < objects.size(); i++) {
+			if(name.equals(objects.get(i).getName())) {
+				objects.set(i, new Item(item));
+				Collections.sort(objects);
+				break;
+			}
+		}
+	}
+	
 	public Item getItem(int position) {
 		if(position == 0) {
 			return null;
