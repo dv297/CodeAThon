@@ -29,6 +29,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		Log.w(DatabaseHelper.class.getName(),
 				"Upgrading database from version " + oldVersion + " to "
 				+ newVersion + ", which will destroy all old data");
+		clear(db);
+	}
+	
+	public void clear(SQLiteDatabase db) {
 		db.execSQL("DROP TABLE IF EXISTS items;");
 		onCreate(db);
 	}

@@ -57,6 +57,10 @@ public class Database {
 		deleteItem(item.getName());
 	}
 	
+	public void clearItems() {
+		database_helper.clear(database);
+	}
+	
 	public ArrayList<Item> getAllItems() {
 		ArrayList<Item> items = new ArrayList<Item>();
 		
