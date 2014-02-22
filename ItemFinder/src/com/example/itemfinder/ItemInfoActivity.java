@@ -22,13 +22,13 @@ public class ItemInfoActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_item_info);
+		//setContentView(R.layout.activity_item_info);
 		Bundle data = getIntent().getExtras();
-		item = (Item) data.getParceable("item");
+		item = (Item) data.getParcelable("item");
 		
-		itemTextView = (TextView) findViewById(R.id.itemTextView);
-		locationTextView = (TextView) findViewById(R.id.locationTextView);
-		keywordsTextView = (TextView) findViewById(R.id.keywordsTextView);
+//		itemTextView = (TextView) findViewById(R.id.itemTextView);
+//		locationTextView = (TextView) findViewById(R.id.locationTextView);
+//		keywordsTextView = (TextView) findViewById(R.id.keywordsTextView);
 		
 		String name = item.getName();
 		String location = item.getLocation();
@@ -43,7 +43,7 @@ public class ItemInfoActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.item_info, menu);
+		//getMenuInflater().inflate(R.menu.item_info, menu);
 		return true;
 	}
 	

@@ -20,12 +20,15 @@ public class MainActivity extends Activity {
 
 	private ArrayAdapter<String> adapter; // Used to search for class list.
 	private ListView itemListView;
+	private ContentHolder content_holder;
+
 
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+		content_holder = new ContentHolder(getBaseContext());
         initList();
         registerForContextMenu((ListView)findViewById(R.id.itemListView));
     }
@@ -121,7 +124,7 @@ public class MainActivity extends Activity {
 		};
 		
 		List<Item> items_list = ContentHolder.getDS().getAllItems();
-		ArrayList<String> items_string = new ArrayList<String>(100);
+		ArrayList<String> items_string = new ArrayList<String>();
 		itemListView = (ListView) findViewById(R.id.itemListView);
 		if(items_list.size() != 0){
 			for(int x = 0; x<items_list.size(); x++){ // changed
