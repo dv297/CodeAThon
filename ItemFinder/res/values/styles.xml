@@ -16,15 +16,5 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-    
-    <style name="NotepadTheme">
-        <item name="android:windowBackground">@drawable/notepad</item>
-        <item name="android:textColor">@color/black</item>
-        
-    </style>
-    <style name="noAnimTheme" parent="android:Theme">
-  		<item name="android:windowAnimationStyle">@null</item>
-  		<item name="android:windowBackground">@drawable/notepad</item>
-	</style>
 
 </resources>
