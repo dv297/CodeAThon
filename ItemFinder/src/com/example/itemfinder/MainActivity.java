@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.ArrayAdapter;
 import java.util.List;
 
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
@@ -30,19 +33,32 @@ public class MainActivity extends Activity {
         ListView lstView = (ListView) findViewById(R.id.itemListView);
         
         ArrayList<String> arrayList = new ArrayList<String>(100);
-        for(int i = 0; i < 100; i++)
-        {
+        for(int i = 0; i < 100; i++) {
         	arrayList.add(Integer.toString(i));
         }
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         
-        lstView.setAdapter(adapter);        
-    }
-
-
-    public void testMethod(View someView)
-    {
-    	adapter.add("added");
+        lstView.setAdapter(adapter);
+        
+        lstView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				
+			}
+        });
+        
+        /*lstView.setOnItemLongClickListener(new OnItemLongClickListener() {
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				if(position == 0)
+					return true;
+				return false;
+			}
+        });*/
+        
+        registerForContextMenu(lstView);
     }
     
     @Override
@@ -51,7 +67,6 @@ public class MainActivity extends Activity {
 		super.onPause();
 		
 	}
-
 
 	@Override
 	protected void onRestart() {
@@ -66,6 +81,31 @@ public class MainActivity extends Activity {
 		super.onResume();
 	}
 
+	//Context menu for holding a list item
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
+		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
+		if(info.position > 0) {
+			menu.setHeaderTitle(adapter.getItem(info.position));
+			super.onCreateContextMenu(menu, view, menuInfo);
+		    getMenuInflater().inflate(R.menu.context_menu, menu);
+		}
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+		switch(item.getItemId()) {
+		case R.id.context_edit:
+			System.out.println("edit");
+			break;
+			
+		case R.id.context_delete:
+			System.out.println("delete");
+			break;
+		}
+		return true;
+	}
 
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -93,7 +133,7 @@ public class MainActivity extends Activity {
 		return true;
 	}
     
-	public void initList(){
+	public void initList() {
 		List<Item> items_list = dataSource.getAllItems();
 		ArrayList<String> items_string = new ArrayList<String>();
 		itemListView = (ListView) findViewById(R.id.itemListView);
@@ -120,13 +160,5 @@ public class MainActivity extends Activity {
 				
 			});
 		}
-	}
-	
-	public void submitButtonClick(View view){
-		
-	}
-	
-	public void addButtonClick(View view){
-		
 	}
 }

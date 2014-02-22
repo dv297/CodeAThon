@@ -5,9 +5,9 @@
     
     <string name="action_about">About</string>
     
+    <string name="context_edit">Edit</string>
+    <string name="context_delete">Delete</string>
+    
     <string name="search_edit_text_hint">Search for an item</string>
-    <string name="search_submit_button">Submit Button</string>
-    <string name="item_list_view">Item List View</string>
-    <string name="add_item_button">Add</string>
 
 </resources>
