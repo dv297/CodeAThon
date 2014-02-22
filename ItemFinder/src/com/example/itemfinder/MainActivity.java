@@ -28,16 +28,16 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView lstView = (ListView) findViewById(R.id.itemListView);
+        ListView listView = (ListView) findViewById(R.id.itemListView);
         
-        ArrayList<String> arrayList = new ArrayList<String>(100);
-        for(int i = 0; i < 100; i++) {
-        	arrayList.add(Integer.toString(i));
-        }
+//        ArrayList<String> arrayList = new ArrayList<String>(100);
+//        for(int i = 0; i < 100; i++) {
+//        	arrayList.add(Integer.toString(i));
+//        }
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         
-        lstView.setAdapter(adapter);
-        registerForContextMenu(lstView);
+        listView.setAdapter(adapter);
+        registerForContextMenu(listView);
     }
 
     @Override
@@ -115,35 +115,25 @@ public class MainActivity extends Activity {
 	public void initList() {
 		AdapterView.OnItemClickListener clickListener = new AdapterView.OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> parent, View arg1, int position,
-					long arg3) {
+			public void onItemClick(AdapterView<?> parent, View arg1, int position,	long arg3) {
 				Intent i = new Intent(arg1.getContext(), ItemInfoActivity.class);
 		        final String item_name = (String) parent.getItemAtPosition(position);
-		        
-		        ItemInfoActivity.setValues();
-//				//GradeListActivity.setTitle(item);
-//				//GradeListActivity.setSubject(new Subject(ContentHolder.getStudent().getName(), item, "ABSOLUTE")); // FIX THIS TEMPORARY CODE.
-//				//startActivity(i);
-//				
+				startActivity(i);				
 			}
 		};
 		
 		List<Item> items_list = ContentHolder.getDS().getAllItems();
 		ArrayList<String> items_string = new ArrayList<String>(100);
 		itemListView = (ListView) findViewById(R.id.itemListView);
-		//if(items_list.size() == 0){ // changed
-			for(int x = 0; x<100; x++){ // changed
-				//items_string.add(items_list.get(x).getName());
-				// Testing purposes
-				items_string.add("TEST");
+		if(items_list.size() != 0){
+			for(int x = 0; x<items_list.size(); x++){ // changed
+				items_string.add(items_list.get(x).getName());
 			}
 			adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, items_string);
-			
 			itemListView.setAdapter(adapter);
-			
 			itemListView.setOnItemClickListener(clickListener);
 		}
-//	}
+	}
 	
 	public void addButtonClick(View view) {
 		
