@@ -29,8 +29,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 		content_holder = new ContentHolder(getBaseContext());
+		
+		registerForContextMenu((ListView)findViewById(R.id.itemListView));
         initList();
-        registerForContextMenu((ListView)findViewById(R.id.itemListView));
     }
 
     @Override
@@ -123,6 +124,10 @@ public class MainActivity extends Activity {
 			}
 		};
 		
+		ContentHolder.getDS().createItem(new Item("toilet", "bathroom"));
+		ContentHolder.getDS().createItem(new Item("sofa", "living room"));
+		ContentHolder.getDS().createItem(new Item("zebra", "barn"));
+		
 		List<Item> items_list = ContentHolder.getDS().getAllItems();
 		ArrayList<String> items_string = new ArrayList<String>();
 		itemListView = (ListView) findViewById(R.id.itemListView);
@@ -134,9 +139,5 @@ public class MainActivity extends Activity {
 			itemListView.setAdapter(adapter);
 			itemListView.setOnItemClickListener(clickListener);
 		}
-	}
-	
-	public void addButtonClick(View view) {
-		
 	}
 }
