@@ -39,6 +39,16 @@ public class Database {
 		return database.insert("items", null, values) == -1;
 	}
 	
+//	public void editItem(Item old_item, Item new_item){
+//		String execSQL = "UPDATE items SET "
+//				         + "name = " + new_item.name + ", "
+//						 + "location = " + new_item.location + ", "
+//						 + "keywords = " + new_item.location + " "
+//						 + "WHERE "
+//						 + "name = " + old_item.name ";"
+//				
+//	}
+//	
 	public void deleteItem(String item) {
 		database.delete("items", "name = ?", new String[]{item});
 	}
