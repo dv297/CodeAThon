@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
 
 	private ArrayAdapter<String> adapter; // Used to search for class list.
 	private ListView itemListView;
-	private ContentHolder content_holder;
+	private ContentHolder content_holder; // This is necessary, DO NOT DELETE
 
 
 	
@@ -126,17 +126,39 @@ public class MainActivity extends Activity {
 		List<Item> items_list = ContentHolder.getDS().getAllItems();
 		ArrayList<String> items_string = new ArrayList<String>();
 		itemListView = (ListView) findViewById(R.id.itemListView);
+		items_string.add("Add New Item...");
 		if(items_list.size() != 0){
-			for(int x = 0; x<items_list.size(); x++){ // changed
+			for(int x = 0; x<items_list.size(); x++){
 				items_string.add(items_list.get(x).getName());
 			}
-			adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, items_string);
-			itemListView.setAdapter(adapter);
-			itemListView.setOnItemClickListener(clickListener);
 		}
+		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, items_string);
+		itemListView.setAdapter(adapter);
+		itemListView.setOnItemClickListener(clickListener);
 	}
 	
 	public void addButtonClick(View view) {
-		
+		Intent intent = new Intent(view.getContext(), AddItemActivity.class);
+		startActivity(intent);
+
 	}
+	
+	/**
+	 * The results of the AddItemActivity
+	 */
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		  if (requestCode == 1) {
+
+		     if(resultCode == RESULT_OK){      
+		    	 // This means that the user did everything to add an item.
+		    	 // Item adding is done in AddItemActivity
+		    	 // We just have to refresh the list.
+		 		 initList();
+		     }
+		     if (resultCode == RESULT_CANCELED) {    
+		         //Write your code if there's no result
+		     }
+		  }
+	}	
 }
