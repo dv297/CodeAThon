@@ -62,11 +62,27 @@ public class DataSource {
 		return Items;
 	}
 	
+	public Item getItemByName(String name){
+		Item item = new Item();
+		item.setName(name);
+		Cursor cursor = database.query(DatabaseHelper.TABLE_ITEMS, DatabaseHelper.ITEM_ALLCOLUMNS, null, null, null, null, null);
+		while(!cursor.isAfterLast()){
+			Item compare_item = cursorToItem(cursor);
+			if(item.getName().equals(compare_item.getName())){
+				item = new Item(compare_item);
+				break;
+			}
+			cursor.moveToNext();
+		}
+		return item;
+	}
+	
 	private Item cursorToItem(Cursor cursor){
 		Item item = new Item();
 		item.setId(cursor.getLong(0));
 		item.setName(cursor.getString(0));
 		item.setLocation(cursor.getString(1));
+		item.setKeywords(cursor.getString(2));
 		return item;
 	}
 	

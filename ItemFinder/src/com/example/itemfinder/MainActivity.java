@@ -13,50 +13,40 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.EditText;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
 
 	private ArrayAdapter<String> adapter; // Used to search for class list.
 	private ListView itemListView;
+	private ContentHolder content_holder;
+
 
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ListView lstView = (ListView) findViewById(R.id.itemListView);
-        
-        ArrayList<String> arrayList = new ArrayList<String>(100);
-        for(int i = 0; i < 100; i++) {
-        	arrayList.add(Integer.toString(i));
-        }
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
-        
-        lstView.setAdapter(adapter);
-        registerForContextMenu(lstView);
+		content_holder = new ContentHolder(getBaseContext());
+        initList();
+        registerForContextMenu((ListView)findViewById(R.id.itemListView));
     }
 
     @Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		
 	}
 
 	@Override
 	protected void onRestart() {
-		// TODO Auto-generated method stub
 		super.onRestart();
 	}
 
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 
@@ -72,11 +62,14 @@ public class MainActivity extends Activity {
 	}
 	
 	@Override
-	public boolean onContextItemSelected(MenuItem item) {
-		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
-		switch(item.getItemId()) {
+	public boolean onContextItemSelected(MenuItem menuItem) {
+		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuItem.getMenuInfo();
+		switch(menuItem.getItemId()) {
 		case R.id.context_edit:
-			System.out.println("edit");
+			Intent intent = new Intent(info.targetView.getContext(), ItemInfoActivity.class);
+			Item item = ContentHolder.getDS().getItemByName(adapter.getItem(info.position));
+			intent.putExtra("item", item);
+	        startActivity(intent);
 			break;
 			
 		case R.id.context_delete:
@@ -113,49 +106,34 @@ public class MainActivity extends Activity {
 	}
     
 	public void initList() {
+		AdapterView.OnItemClickListener clickListener = new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) {
+				if(position == 0) {
+					Intent intent = new Intent(view.getContext(), AddItemActivity.class);
+					intent.putExtra("name", ((EditText)findViewById(R.id.searchEditText)).getText());
+					startActivity(intent);
+				} else {
+					Intent intent = new Intent(view.getContext(), ItemInfoActivity.class);
+					Item item = ContentHolder.getDS().getItemByName((String)parent.getItemAtPosition(position));
+					intent.putExtra("item", item);
+			        startActivity(intent);
+				}
+			}
+		};
+		
 		List<Item> items_list = ContentHolder.getDS().getAllItems();
-		ArrayList<String> items_string = new ArrayList<String>(100);
+		ArrayList<String> items_string = new ArrayList<String>();
 		itemListView = (ListView) findViewById(R.id.itemListView);
-		//if(items_list.size() == 0){ // changed
-			for(int x = 0; x<100; x++){ // changed
-				//items_string.add(items_list.get(x).getName());
-				// Testing purposes
-				items_string.add("TEST");
+		if(items_list.size() != 0){
+			for(int x = 0; x<items_list.size(); x++){ // changed
+				items_string.add(items_list.get(x).getName());
 			}
 			adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, items_string);
-			
 			itemListView.setAdapter(adapter);
-			
-			itemListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-				@Override
-				public void onItemClick(AdapterView<?> parent, View arg1, int position,
-						long arg3) {
-					if(position == 0){
-						Intent i = new Intent(arg1.getContext(), AddItemActivity.class);
-						startActivity(i);
-					}
-					else{
-						Intent i = new Intent(arg1.getContext(), ItemInfoActivity.class);
-				        final String item_name = (String) parent.getItemAtPosition(position);
-				        Item item = new Item();
-				        List<Item> item_list = ContentHolder.getDS().getAllItems();
-				        for(int x = 0; x<item_list.size(); x++){
-				        	if(item_name.equals(item_list.get(x).getName())){
-				        		item = item_list.get(x);
-				        	}
-				        }
-				        ItemInfoActivity.setValues(item.getName(), item.getLocation(), item.getKeywords());
-	//					//GradeListActivity.setTitle(item);
-	//					//GradeListActivity.setSubject(new Subject(ContentHolder.getStudent().getName(), item, "ABSOLUTE")); // FIX THIS TEMPORARY CODE.
-	//					//startActivity(i);
-					}//end else
-//					
-				}
-				
-			});
 		}
-//	}
+	}
 	
 	public void addButtonClick(View view) {
 		
