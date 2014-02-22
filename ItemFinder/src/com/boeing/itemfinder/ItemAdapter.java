@@ -1,4 +1,4 @@
-package com.example.itemfinder;
+package com.boeing.itemfinder;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -56,7 +56,7 @@ public class ItemAdapter extends BaseAdapter implements Filterable {
 	private boolean doesFilter(Item item) {
 		if(szConstraint == null)
 			return true;
-		return item.getName().toLowerCase().contains(szConstraint) || item.getKeywords().toLowerCase().contains(szConstraint);
+		return item.matches(szConstraint);
 	}
 	
 	public ItemAdapter(Context context, ArrayList<Item> objects) {

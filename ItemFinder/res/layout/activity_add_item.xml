@@ -3,91 +3,104 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-     >
-	       
-	       <TextView 
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        
-		        android:textSize="20sp"
-		        android:textStyle="bold"
-		        
-		        		        
-		        android:text="   Add Item" 
-	        />
-	       
-	       <EditText 
-	           android:layout_width="fill_parent"
-		       android:layout_height="wrap_content"
-		     	       
-		       android:id="@+id/ItemEditText"
-		       
-		       android:hint="Add New Item"
-		       android:textSize="26sp"
-		       android:singleLine="true"
-		       android:focusable="true"
-		       android:focusableInTouchMode="true"
-	           
-	           />
-	       
-	       <TextView 
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        
-		        android:textStyle="bold"
-		        android:textSize="20sp"
-		        
-		        android:text="  Add Location"        
-	        />
-	       
-	       <EditText 
-	           android:layout_width="fill_parent"
-		       android:layout_height="wrap_content"
-		       
-		       
-		       android:id="@+id/LocationEditText"
-		       
-		       android:hint="Add Location of Object"
-	           android:textSize="26sp"
-	           android:focusable="true"
-		       android:focusableInTouchMode="true"
-	           />
-	       
-	       <TextView 
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        
-		        android:textStyle="bold"
-		        android:textSize="20sp"
-		        
-		        android:text="  Keywords"        
-	        />
-	       
-	       <EditText 
-	           android:layout_width="fill_parent"
-		       android:layout_height="wrap_content"
-		      
-		       android:id="@+id/KeywordsEditText"
-		       
-		       android:hint="Add Keywords (Optional)"
-		       android:textSize="26sp"
-		       android:singleLine="true"
-		       android:focusable="true"
-		       android:focusableInTouchMode="true"
-	           />
-	<RelativeLayout 
+    android:orientation="vertical" >
+    
+	<ScrollView
 	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"   
-	    >
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="top"
+	    android:layout_weight="1" >
+	
+		<LinearLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		    android:scrollbars="vertical"
+		    android:textColor="?android:textColorSecondary" >
+			       
+			<TextView 
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				
+				android:textSize="20sp"
+				android:textStyle="bold"
+				
+						        
+				android:text="   Add Item" 
+			 />
+			
+			<EditText 
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				      
+				android:id="@+id/ItemEditText"
+				
+				android:hint="Add New Item"
+				android:textSize="26sp"
+				android:singleLine="true"
+				android:focusable="true"
+				android:focusableInTouchMode="true"
+				android:inputType="textNoSuggestions"
+			    />
+			
+			<TextView 
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				
+				android:textStyle="bold"
+				android:textSize="20sp"
+				
+				android:text="  Add Location"
+		 		/>
+			
+			<EditText 
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				
+				android:id="@+id/LocationEditText"
+				
+				android:hint="Add Location of Object"
+				android:textSize="26sp"
+				android:focusable="true"
+				android:focusableInTouchMode="true"
+				android:inputType="textNoSuggestions"
+			    />
+			
+			<TextView 
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				
+				android:textStyle="bold"
+				android:textSize="20sp"
+				
+				android:text="  Keywords"        
+			 	/>
+			
+			<EditText 
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				
+				android:id="@+id/KeywordsEditText"
+				
+				android:hint="Add Keywords (Optional)"
+				android:textSize="26sp"
+				android:singleLine="true"
+				android:focusable="true"
+				android:focusableInTouchMode="true"
+				android:inputType="textNoSuggestions"
+			    />
+		</LinearLayout>
+	</ScrollView>
 
-		<TableRow
-		    android:id="@+id/tableRow1"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content" 
-		    android:layout_alignParentBottom="true"
-		    >
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="bottom"
+	    android:layout_weight="0"
+	    android:orientation="horizontal"
+	    android:textColor="?android:textColorSecondary" >
 
+<<<<<<< HEAD
 			<Button
 			    android:id="@+id/cameraButton"
 			    android:layout_width="0dp"
@@ -106,10 +119,25 @@
 			    
 			    android:layout_height="wrap_content"
 			    android:text="@string/add_item_button" />
+=======
+	    <Button
+	        android:id="@+id/returnButton"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:layout_weight="1"
+	        android:onClick="returnClick"
+	        android:text="Return" />
+>>>>>>> e1e2785dd2121740bd5fd5a0803fba9bcbbd48dd
 
+	    <Button
+	        android:id="@+id/addItemButton"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:layout_weight="1"
+	        android:onClick="addItemSubmissionClick" />
 
-		</TableRow>
-	
-	</RelativeLayout>
-	
+	</LinearLayout>
+
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.itemfinder;
+package com.boeing.itemfinder;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -50,6 +50,8 @@ public class ItemInfoActivity extends Activity {
 		
 		if(keywords.length()==0){
 			keywordLabelTextView.setText("");
+		} else {
+			keywordLabelTextView.setText("  Keywords");
 		}
 	}
 	

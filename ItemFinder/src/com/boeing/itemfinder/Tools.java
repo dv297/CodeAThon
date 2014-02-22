@@ -1,4 +1,4 @@
-package com.example.itemfinder;
+package com.boeing.itemfinder;
 
 import android.app.AlertDialog;
 import android.content.Context;
