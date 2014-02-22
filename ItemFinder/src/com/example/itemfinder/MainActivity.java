@@ -120,22 +120,18 @@ public class MainActivity extends Activity {
 			}
 		};
 		
-		//List<Item> items_list = ContentHolder.getDS().getAllItems();
+		List<Item> items_list = ContentHolder.getDS().getAllItems();
 		ArrayList<String> items_string = new ArrayList<String>(100);
 		itemListView = (ListView) findViewById(R.id.itemListView);
-		//if(items_list.size() == 0){ // changed
-			for(int x = 0; x<100; x++){ // changed
-				//items_string.add(items_list.get(x).getName());
-				// Testing purposes
-				items_string.add("TEST");
+		if(items_list.size() != 0){
+			for(int x = 0; x<items_list.size(); x++){ // changed
+				items_string.add(items_list.get(x).getName());
 			}
 			adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, items_string);
-			
 			itemListView.setAdapter(adapter);
-			
 			itemListView.setOnItemClickListener(clickListener);
 		}
-//	}
+	}
 	
 	public void addButtonClick(View view) {
 		

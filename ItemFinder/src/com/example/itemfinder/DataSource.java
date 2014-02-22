@@ -82,6 +82,7 @@ public class DataSource {
 		item.setId(cursor.getLong(0));
 		item.setName(cursor.getString(0));
 		item.setLocation(cursor.getString(1));
+		item.setKeywords(cursor.getString(2));
 		return item;
 	}
 	
