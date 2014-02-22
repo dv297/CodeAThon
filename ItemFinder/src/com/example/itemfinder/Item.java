@@ -11,6 +11,12 @@ public class Item {
 		
 	}
 	
+	public Item(Item a){
+		item_name = a.item_name;
+		item_location = a.item_location;
+		keywords = a.keywords;
+	}
+	
 	public Item(String _name, String _location){
 		item_name = _name;
 		item_location = _location;
