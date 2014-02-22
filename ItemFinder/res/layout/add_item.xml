@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+     >
+	       
+	       <TextView 
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        
+		        android:textSize="16sp"
+		        
+		        		        
+		        android:text="\t\t\tAdd item:" 
+	        />
+	       
+	       <EditText 
+	           android:layout_width="fill_parent"
+		       android:layout_height="wrap_content"
+		     	       
+		       android:id="@+id/addItemEditText"
+		       
+		       android:hint="Add New Item"
+	           
+	           />
+	       
+	       <TextView 
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        
+		      
+		        android:textSize="16sp"
+		        
+		        android:text="\t\t\tAdd Location"        
+	        />
+	       
+	       <EditText 
+	           android:layout_width="fill_parent"
+		       android:layout_height="wrap_content"
+		       
+		       
+		       android:id="@+id/addLocationEditText"
+		       
+		       android:hint="Add Location of Object"
+	           
+	           />
+	       
+	       <TextView 
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        
+		        
+		        android:textSize="16sp"
+		        
+		        android:text="\t\t\tKeywords (Optional)"        
+	        />
+	       
+	       <EditText 
+	           android:layout_width="fill_parent"
+		       android:layout_height="wrap_content"
+		      
+		       android:id="@+id/addKeywordEditText"
+		       
+		       android:hint="Add Keywords"
+	           />
+	<RelativeLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"   
+	    >
+
+		<TableRow
+		    android:id="@+id/tableRow1"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content" 
+		    android:layout_alignParentBottom="true"
+		    >
+
+			<Button
+			    android:id="@+id/addItemButton"
+			    android:layout_width="0dp"
+			    android:layout_weight="0.5"
+			    
+			    
+			    
+			    
+			    android:layout_height="wrap_content"
+			    android:onClick="addItemSubmissionClick"
+			    android:text="@string/add_item_button" />
+
+			<Button
+			    android:id="@+id/returnButton"
+			    
+			    android:layout_width="0dp"
+			    android:layout_weight="0.5"
+			    android:layout_height="wrap_content"
+			    android:text="Return" />
+
+		</TableRow>
+	
+	</RelativeLayout>
+	
+</LinearLayout>
