@@ -25,7 +25,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:theme="@style/NotepadTheme"
             android:name="com.example.itemfinder.MainActivity"
             android:label="@string/app_name" 
             >
