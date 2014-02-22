@@ -1,6 +1,7 @@
 package com.example.itemfinder;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -64,14 +65,12 @@ public class AddItemActivity extends Activity {
 			if(beingEdited){
 				// True if you can't add the item in
 				if(Tools.updateItem(item.getName(), new Item(item_name, item_location, keywords))){
-					
+					// Need to add TOAST
 				}
 				else{
 					Item updated_item = new Item(item_name, item_location, keywords);
-					ContentHolder.getDS().updateItem(item.getName(), updated_item);
-
-					Tools.updateItem(item.getName(), new Item(item_name, item_location, keywords));
-
+					Tools.updateItem(item.getName(), updated_item);
+					ItemInfoActivity.setItem(updated_item);
 					setResult(RESULT_OK);
 					
 					finish();
