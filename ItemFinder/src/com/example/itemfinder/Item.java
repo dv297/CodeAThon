@@ -7,7 +7,7 @@ public class Item implements Comparable, Parcelable {
 
 	private String item_name;
 	private String item_location;
-	private String keywords;
+	private String[] keywords;
 	
 	public Item(){
 		
@@ -22,19 +22,17 @@ public class Item implements Comparable, Parcelable {
 	public Item(String _name) {
 		item_name = _name;
 		item_location = "";
-		keywords = "";
 	}
 	
 	public Item(String _name, String _location){
 		item_name = _name;
 		item_location = _location;
-		keywords = "";
 	}
 	
 	public Item(String _name, String _location, String _keywords){
 		item_name = _name;
 		item_location = _location;
-		keywords = _keywords;
+		keywords = _keywords.split("\\s+");
 	}
 	
 	public String getName(){
@@ -54,11 +52,18 @@ public class Item implements Comparable, Parcelable {
 	}
 	
 	public String getKeywords(){
-		return keywords;
+		if(keywords == null || keywords.length == 0)
+			return "";
+		StringBuilder out = new StringBuilder();
+		out.append(keywords[0]);
+		for(int i = 1; i < keywords.length; i++) {
+			out.append(" ").append(keywords[i]);
+		}
+		return out.toString();
 	}
 	
 	public void setKeywords(String _keywords){
-		keywords = _keywords;
+		keywords = _keywords.split("\\s+");
 	}
 	
 	public boolean equals(Item a){
@@ -66,6 +71,18 @@ public class Item implements Comparable, Parcelable {
 		boolean location = a.item_location.equals(this.item_location);
 		boolean keywords = a.keywords.equals(this.keywords);
 		return name && location && keywords;
+	}
+	
+	public boolean matches(String word) {
+		if(item_name.toLowerCase().contains(word)) {
+			return true;
+		}
+		for(int i = 0; i < keywords.length; i++) {
+			if(keywords[i].contains(word)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	//Parcelable methods
@@ -78,7 +95,7 @@ public class Item implements Comparable, Parcelable {
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeString(item_name);
 		dest.writeString(item_location);
-		dest.writeString(keywords);
+		dest.writeStringArray(keywords);
 	}
 	
 	public static final Parcelable.Creator<Item> CREATOR = new Parcelable.Creator<Item>() {
@@ -94,7 +111,7 @@ public class Item implements Comparable, Parcelable {
     private Item(Parcel in) {
     	item_name = in.readString();
     	item_location = in.readString();
-    	keywords = in.readString();
+    	keywords = in.createStringArray();
     }
 
 	@Override
