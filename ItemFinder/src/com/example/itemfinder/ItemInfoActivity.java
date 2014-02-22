@@ -9,7 +9,6 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class ItemInfoActivity extends Activity {
@@ -24,18 +23,17 @@ public class ItemInfoActivity extends Activity {
 		Bundle data = getIntent().getExtras();
 		item = (Item) data.getParcelable("item");
 		
-		EditText itemEditText = (EditText) findViewById(R.id.ItemEditText);
-		EditText locationEditText = (EditText) findViewById(R.id.LocationEditText);
-		EditText keywordsEditText = (EditText) findViewById(R.id.KeywordsEditText);
+		TextView itemTextView = (TextView) findViewById(R.id.ItemTextView);
+		TextView locationTextView = (TextView) findViewById(R.id.LocationTextView);
+		TextView keywordsTextView = (TextView) findViewById(R.id.KeywordsTextView);
 		
 		String name = item.getName();
 		String location = item.getLocation();
 		String keywords = item.getKeywords();
 		
-		System.out.println(item);
-		itemEditText.setText(name);
-		locationEditText.setText(location);
-		keywordsEditText.setText(keywords);
+		itemTextView.setText(name);
+		locationTextView.setText(location);
+		keywordsTextView.setText(keywords);
 		
 	}
 
@@ -47,8 +45,9 @@ public class ItemInfoActivity extends Activity {
 	}
 	
 	public void editClick(View view){
-		Intent i = new Intent(view.getContext(), AddItemActivity.class);
-		startActivity(i);	
+		Intent intent = new Intent(view.getContext(), AddItemActivity.class);
+		intent.putExtra("item", item);
+		startActivity(intent);
 	}
 	
 	public void finishClick(View view){

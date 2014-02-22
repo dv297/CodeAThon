@@ -20,9 +20,8 @@ public class MainActivity extends Activity {
 
 	private ArrayAdapter<String> adapter; // Used to search for class list.
 	private ListView itemListView;
+	@SuppressWarnings("unused")
 	private ContentHolder content_holder; // This is necessary, DO NOT DELETE
-
-
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {

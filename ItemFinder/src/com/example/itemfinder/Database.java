@@ -1,9 +1,7 @@
 package com.example.itemfinder;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
 /**
- * With code taken from Lars Vogel
+ * Based on code from tutorial
  * URL: http://www.vogella.com/articles/AndroidSQLite/article.html
  *
  */

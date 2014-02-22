@@ -1,7 +1,6 @@
 package com.example.itemfinder;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -12,29 +11,39 @@ public class AddItemActivity extends Activity {
 
 	private boolean ready_to_submit = false; // Determines whether or not all of the forms are completed with correct values.
 
+	private EditText addItemEditText, addLocationEditText, addKeywordEditText;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_item);
+		
+		Bundle data = getIntent().getExtras();
+		Item item = (Item) data.getParcelable("item");
+		System.out.println("TAG: " + item);
+		
+		addItemEditText = (EditText) findViewById(R.id.ItemEditText);
+		addLocationEditText = (EditText) findViewById(R.id.LocationEditText);
+		addKeywordEditText = (EditText) findViewById(R.id.KeywordsEditText);
+		
+		if(item!=null){
+			addItemEditText.setText(item.getName());
+			addLocationEditText.setText(item.getLocation());
+			addKeywordEditText.setText(item.getKeywords());
+		}
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-//		getMenuInflater().inflate(R.menu.add_item, menu);
+		//getMenuInflater().inflate(R.menu.add_item, menu);
 		return true;
 	}
 	
 	public void addItemSubmissionClick(View view){
-		EditText addItemEditText = (EditText) findViewById(R.id.ItemEditText);
-		EditText addLocationEditText = (EditText) findViewById(R.id.LocationEditText);
-		EditText addKeywordsEditText = (EditText) findViewById(R.id.KeywordsEditText);
-		
-		
 		String item_name = addItemEditText.getText().toString();
 		String item_location = addLocationEditText.getText().toString();
-		String keywords = addKeywordsEditText.getText().toString();
+		String keywords = addKeywordEditText.getText().toString();
 		
 		if(item_name.length() == 0 || item_location.length() == 0){
 			ready_to_submit = false;
