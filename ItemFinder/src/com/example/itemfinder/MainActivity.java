@@ -5,6 +5,8 @@ import java.util.List;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.app.AlertDialog;
 import android.text.Editable;
@@ -45,8 +47,7 @@ public class MainActivity extends Activity {
 					startActivity(intent);
 				} else {
 					Intent intent = new Intent(view.getContext(), ItemInfoActivity.class);
-					Item item = ContentHolder.getDS().getItemByName((String)parent.getItemAtPosition(position));
-					intent.putExtra("item", item);
+					intent.putExtra("item", adapter.getItem(position));
 			        startActivity(intent);
 				}
 			}
@@ -117,17 +118,22 @@ public class MainActivity extends Activity {
 	
 	@Override
 	public boolean onContextItemSelected(MenuItem menuItem) {
-		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuItem.getMenuInfo();
+		final AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuItem.getMenuInfo();
 		switch(menuItem.getItemId()) {
 		case R.id.context_edit:
-			Intent intent = new Intent(info.targetView.getContext(), ItemInfoActivity.class);
-			Item item = ContentHolder.getDS().getItemByName(adapter.getItem(info.position).getName());
-			intent.putExtra("item", item);
+			Intent intent = new Intent(info.targetView.getContext(), AddItemActivity.class);
+			intent.putExtra("item", adapter.getItem(info.position));
 	        startActivity(intent);
 			break;
 			
 		case R.id.context_delete:
-			System.out.println("delete");
+			Tools.deleteItemDialog(MainActivity.this, new OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					Tools.deleteItem(adapter.getItem(info.position));
+				}
+			});
+			
 			break;
 		}
 		return true;

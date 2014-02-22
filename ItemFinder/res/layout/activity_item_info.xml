@@ -10,10 +10,11 @@
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content"
 		        
-		        android:textSize="16sp"
+		        android:textStyle="bold"
+		        android:textSize="20sp"
 		        
 		        		        
-		        android:text="\t\t\tItem:" 
+		        android:text="  Item" 
 	        />
 	       
 	       <TextView
@@ -21,7 +22,8 @@
 	           android:layout_width="fill_parent"
 		       android:layout_height="wrap_content"
 		     	       
-		       
+		       android:textSize="26sp"
+		       android:paddingLeft="40dp"
 		       
 	           
 	           />
@@ -31,9 +33,10 @@
 		        android:layout_height="wrap_content"
 		        
 		      
-		        android:textSize="16sp"
+		        android:textSize="20sp"
+		        android:textStyle="bold"
 		        
-		        android:text="\t\t\tLocation"        
+		        android:text="  Location"        
 	        />
 	       
 	       <TextView
@@ -41,24 +44,28 @@
 	           android:layout_width="fill_parent"
 		       android:layout_height="wrap_content"
 		       
-		       
+		       android:textSize="26sp"
+		       android:paddingLeft="40dp"
 	           />
 	       
 	       <TextView 
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content"
 		        
-		        android:textSize="16sp"
+		        android:textSize="20sp"
+		        android:textStyle="bold"
 		        
-		        android:text="\t\t\tKeywords (Optional)"        
+		        android:id="@+id/keywordLabelTextView"
+		        android:text="  Keywords (Optional)"        
 	        />
 	       
 	       <TextView
 	           android:id="@+id/KeywordsTextView"
 	           android:layout_width="fill_parent"
 		       android:layout_height="wrap_content"
-		      
 		       
+		       android:textSize="26sp"
+		       android:paddingLeft="40dp"
 	           />
 	<RelativeLayout 
 	    android:layout_width="fill_parent"

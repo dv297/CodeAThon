@@ -25,7 +25,7 @@ public class ItemInfoActivity extends Activity {
 		TextView itemTextView = (TextView) findViewById(R.id.ItemTextView);
 		TextView locationTextView = (TextView) findViewById(R.id.LocationTextView);
 		TextView keywordsTextView = (TextView) findViewById(R.id.KeywordsTextView);
-		//TextView keywordLabelTextView = (TextView) findViewById(R.id.keywordLabelTextView);
+		TextView keywordLabelTextView = (TextView) findViewById(R.id.keywordLabelTextView);
 		
 		String name = item.getName();
 		String location = item.getLocation();
@@ -35,7 +35,7 @@ public class ItemInfoActivity extends Activity {
 		locationTextView.setText(location);
 		keywordsTextView.setText(keywords);
 		if(keywords.length()==0){
-			//keywordLabelTextView.setText("");
+			keywordLabelTextView.setText("");
 		}
 	}
 
@@ -57,7 +57,7 @@ public class ItemInfoActivity extends Activity {
 	}
 	
 	public void deleteClick(View view){
-		Tools.deleteItemDialog(item, ItemInfoActivity.this, new OnClickListener() {
+		Tools.deleteItemDialog(ItemInfoActivity.this, new OnClickListener() {
 			// Uses the Tools class, runs when the AlertDialog clicks on the positive button.
 			@Override
 			public void onClick(DialogInterface dialog, int which) {

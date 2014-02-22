@@ -70,10 +70,13 @@ public class ItemAdapter extends BaseAdapter implements Filterable {
 	public void add(Item item) {
 		objectsOriginal.add(item);
 		Collections.sort(objectsOriginal);
-		if(doesFilter(item)) {
-			objects.add(item);
-			Collections.sort(objects);
+		if(objects != objectsOriginal) {
+			if(doesFilter(item)) {
+				objects.add(item);
+				Collections.sort(objects);
+			}
 		}
+		notifyDataSetChanged();
 	}
 	
 	public void update(String name, Item item) {
@@ -85,16 +88,16 @@ public class ItemAdapter extends BaseAdapter implements Filterable {
 				break;
 			}
 		}
-		if(i == objectsOriginal.size()) {
-			return;
-		}
-		for(i = 0; i < objects.size(); i++) {
-			if(name.equals(objects.get(i).getName())) {
-				objects.set(i, new Item(item));
-				Collections.sort(objects);
-				break;
+		if(objects != objectsOriginal && i < objectsOriginal.size()) {
+			for(i = 0; i < objects.size(); i++) {
+				if(name.equals(objects.get(i).getName())) {
+					objects.set(i, new Item(item));
+					Collections.sort(objects);
+					break;
+				}
 			}
 		}
+		notifyDataSetChanged();
 	}
 	
 	public void remove(String name) {
@@ -105,22 +108,22 @@ public class ItemAdapter extends BaseAdapter implements Filterable {
 				break;
 			}
 		}
-		if(i == objectsOriginal.size()) {
-			return;
-		}
-		for(i = 0; i < objects.size(); i++) {
-			if(name.equals(objects.get(i).getName())) {
-				objects.remove(i);
-				break;
+		if(objects != objectsOriginal && i < objectsOriginal.size()) {
+			for(i = 0; i < objects.size(); i++) {
+				if(name.equals(objects.get(i).getName())) {
+					objects.remove(i);
+					break;
+				}
 			}
 		}
+		notifyDataSetChanged();
 	}
 	
 	public Item getItem(int position) {
 		if(position == 0) {
 			return null;
 		}
-		return objects.get(position);
+		return objects.get(position - 1);
 	}
 	
 	@Override

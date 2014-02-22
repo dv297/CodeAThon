@@ -7,7 +7,7 @@ import android.content.DialogInterface.OnClickListener;
 
 public class Tools {
 	
-	public static void deleteItemDialog(final Item i, Context c, OnClickListener yes){
+	public static void deleteItemDialog(Context c, OnClickListener yes){
 		//TODO: i18n string
 		AlertDialog.Builder builder = new AlertDialog.Builder(c);
 		builder.setMessage("Are you sure you wish to delete this item?");
