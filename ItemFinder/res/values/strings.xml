@@ -3,6 +3,8 @@
 
     <string name="app_name">ItemFinder</string>
     
+    <string name="action_stats">Stats</string>
+    <string name="action_nuke">Delete All Items</string>
     <string name="action_about">About</string>
     
     <string name="context_edit">Edit</string>

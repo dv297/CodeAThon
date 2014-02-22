@@ -12,7 +12,8 @@ import android.widget.TextView;
 
 public class ItemInfoActivity extends Activity {
 
-	private Item item;
+	private static Item item;
+	private TextView itemTextView, locationTextView, keywordsTextView, keywordLabelTextView;
 					 
 	
 	@Override
@@ -21,11 +22,23 @@ public class ItemInfoActivity extends Activity {
 		setContentView(R.layout.activity_item_info);
 		Bundle data = getIntent().getExtras();
 		item = (Item) data.getParcelable("item");
-		
-		TextView itemTextView = (TextView) findViewById(R.id.ItemTextView);
-		TextView locationTextView = (TextView) findViewById(R.id.LocationTextView);
-		TextView keywordsTextView = (TextView) findViewById(R.id.KeywordsTextView);
-		TextView keywordLabelTextView = (TextView) findViewById(R.id.keywordLabelTextView);
+		initValues();
+
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		//getMenuInflater().inflate(R.menu.item_info, menu);
+		return true;
+	}
+	
+	public void initValues(){
+		itemTextView = (TextView) findViewById(R.id.ItemTextView);
+		locationTextView = (TextView) findViewById(R.id.LocationTextView);
+		keywordsTextView = (TextView) findViewById(R.id.KeywordsTextView);
+		keywordLabelTextView = (TextView) findViewById(R.id.keywordLabelTextView);
 		
 		String name = item.getName();
 		String location = item.getLocation();
@@ -34,16 +47,10 @@ public class ItemInfoActivity extends Activity {
 		itemTextView.setText(name);
 		locationTextView.setText(location);
 		keywordsTextView.setText(keywords);
+		
 		if(keywords.length()==0){
 			keywordLabelTextView.setText("");
 		}
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.item_info, menu);
-		return true;
 	}
 	
 	public void editClick(View view){
@@ -67,6 +74,27 @@ public class ItemInfoActivity extends Activity {
 			}
 			
 		});
+	}
+	
+	/**
+	 * The results of the editing
+	 */
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    if(resultCode == RESULT_OK) {
+	 		initValues();
+	    } else if (resultCode == RESULT_CANCELED) {
+	       //Write your code if there's no result
+	    }
+	}
+	
+	public static void setItem(Item i){
+		item = i;
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		 initValues();
 	}
 
 }
