@@ -22,6 +22,7 @@ public class MainActivity extends Activity {
 
 	private ItemAdapter adapter; // Used to search for class list.
 	private ListView itemListView;
+	@SuppressWarnings("unused")
 	private ContentHolder content_holder; // This is necessary, DO NOT DELETE
 
     @Override
@@ -65,12 +66,14 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onRestart() {
 		super.onRestart();
+		 initList();
 	}
 
 
 	@Override
 	protected void onResume() {
 		super.onResume();
+		 initList();
 	}
 
 	//Context menu for holding a list item
@@ -167,18 +170,13 @@ public class MainActivity extends Activity {
 	 * The results of the AddItemActivity
 	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-		  if (requestCode == 1) {
-
-		     if(resultCode == RESULT_OK) {
-		    	 // This means that the user did everything to add an item.
-		    	 // Item adding is done in AddItemActivity
-		    	 // We just have to refresh the list.
-		 		 initList();
-		     }
-		     if (resultCode == RESULT_CANCELED) {    
-		         //Write your code if there's no result
-		     }
-		  }
+	    if(resultCode == RESULT_OK) {
+	    	// This means that the user did everything to add an item.
+	    	// Item adding is done in AddItemActivity
+	    	// We just have to refresh the list.
+	 		initList();
+	    } else if (resultCode == RESULT_CANCELED) {    
+	       //Write your code if there's no result
+	    }
 	}
 }

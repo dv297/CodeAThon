@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
 /**
- * With code taken from Lars Vogel
+ * Based on code from tutorial
  * URL: http://www.vogella.com/articles/AndroidSQLite/article.html
  *
  */
@@ -42,7 +42,7 @@ public class Database {
 	}
 	
 	public void deleteItem(String item) {
-		database.delete("items", "name = " + item, null);
+		database.delete("items", "name = ?", new String[]{item});
 	}
 
 	public void deleteItem(Item item) {

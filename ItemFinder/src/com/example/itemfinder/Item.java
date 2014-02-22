@@ -67,10 +67,6 @@ public class Item implements Comparable, Parcelable {
 		boolean keywords = a.keywords.equals(this.keywords);
 		return name && location && keywords;
 	}
-	
-	public String toString() {
-		return item_name;
-	}
 
 	//Parcelable methods
 	@Override

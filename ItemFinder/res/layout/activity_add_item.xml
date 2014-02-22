@@ -20,9 +20,13 @@
 	           android:layout_width="fill_parent"
 		       android:layout_height="wrap_content"
 		     	       
-		       android:id="@+id/addItemEditText"
+		       android:id="@+id/ItemEditText"
 		       
 		       android:hint="Add New Item"
+		       
+		       android:singleLine="true"
+		       android:focusable="true"
+		       android:focusableInTouchMode="true"
 	           
 	           />
 	       
@@ -41,10 +45,12 @@
 		       android:layout_height="wrap_content"
 		       
 		       
-		       android:id="@+id/addLocationEditText"
+		       android:id="@+id/LocationEditText"
 		       
 		       android:hint="Add Location of Object"
 	           
+	           android:focusable="true"
+		       android:focusableInTouchMode="true"
 	           />
 	       
 	       <TextView 
@@ -61,9 +67,13 @@
 	           android:layout_width="fill_parent"
 		       android:layout_height="wrap_content"
 		      
-		       android:id="@+id/addKeywordsEditText"
+		       android:id="@+id/KeywordsEditText"
 		       
 		       android:hint="Add Keywords"
+		       
+		       android:singleLine="true"
+		       android:focusable="true"
+		       android:focusableInTouchMode="true"
 	           />
 	<RelativeLayout 
 	    android:layout_width="fill_parent"

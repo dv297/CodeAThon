@@ -1,51 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical"
-     >
-	       
-	       <TextView 
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        
-		        android:textSize="16sp"
-		        
-		        		        
-		        android:text="\t\t\tItem:" 
-	        />
-	       
-	       <EditText 
-	           android:layout_width="fill_parent"
-		       android:layout_height="wrap_content"
-		     	       
-		       android:id="@+id/addItemEditText"
+    	android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:orientation="vertical"
+	     >
 		       
-		       android:hint="Item"
-	           
-	           />
-	       
-	       <TextView 
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        
-		      
-		        android:textSize="16sp"
-		        
-		        android:text="\t\t\tAdd Location"        
-	        />
-	       
-	       <EditText 
-	           android:layout_width="fill_parent"
-		       android:layout_height="wrap_content"
+		       <TextView 
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        
+			        android:textSize="16sp"
+			        
+			        		        
+			        android:text="\t\t\tItem:" 
+		        />
 		       
+		       <TextView 
+		           android:layout_width="fill_parent"
+			       android:layout_height="wrap_content"
+			     	       
+			       android:id="@+id/ItemTextView"
+			       
+	
+		           />
 		       
-		       android:id="@+id/addLocationEditText"
+		       <TextView 
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        
+			      
+			        android:textSize="16sp"
+			        
+			        android:text="\t\t\tLocation"        
+		        />
 		       
-		       android:hint="Add Location of Object"
-	           
-	           />
+		       <TextView 
+		           android:layout_width="fill_parent"
+			       android:layout_height="wrap_content"
+			       
+			       
+			       android:id="@+id/LocationTextView"
+		           />
 	       
 	       <TextView 
 		        android:layout_width="fill_parent"
@@ -56,64 +52,61 @@
 		        
 		        android:text="\t\t\tKeywords (Optional)"        
 	        />
-	       
-	       <EditText 
-	           android:layout_width="fill_parent"
-		       android:layout_height="wrap_content"
-		      
-		       android:id="@+id/addKeywordsEditText"
 		       
-		       android:hint="Add Keywords"
-	           />
-	<RelativeLayout 
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"   
-	    
-	    >
+		       <TextView 
+		           android:layout_width="fill_parent"
+			       android:layout_height="wrap_content"
+			      
+			       android:id="@+id/KeywordsTextView"
+			       
+			       android:hint="Keywords"
+		           />
+		       
+		<RelativeLayout 
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"   
 		    
-			<Button
-			    android:id="@+id/btnFinish"
-			    
-			    
-			    android:layout_width="fill_parent"
-			    android:layout_height="wrap_content"
-			    
-			    android:layout_alignParentBottom="true"			    
-			    android:text="Return" 
-			    
-			    android:onClick="finishClick"
-			    />    		
-			
-			<Button 
-			    
-			    android:layout_height="wrap_content"
-			    android:layout_width="fill_parent"
-			    
-			    android:id="@+id/editClick"
-			    			    
-			    android:text="Edit"
-			    
-			    android:layout_above="@id/btnFinish"
-			    
-			    android:onClick="editClick"
-			    
-			    />
-			
-			<Button
-			    android:id="@+id/delete"
-			    android:layout_width="fill_parent"
-			    
-			    
-			    android:layout_height="wrap_content"
-			    android:text="Delete Item" 
-			    
-			    android:layout_above="@id/editClick"
-			    
-			    android:onClick="deleteClick"
-			    
-			    />
-			
-	
-	</RelativeLayout>
-	
+		    >
+		    	
+					<Button
+					    android:id="@+id/btnFinish"
+					    
+					    
+					    android:layout_width="fill_parent"
+					    android:layout_height="wrap_content"
+					    
+					    android:layout_alignParentBottom="true"			    
+					    android:text="Return" 
+					    
+					    android:onClick="finishClick"
+					    />    		
+					
+					<Button 
+					    
+					    android:layout_height="wrap_content"
+					    android:layout_width="fill_parent"
+					    
+					    android:id="@+id/editClick"
+					    			    
+					    android:text="Edit"
+					    
+					    android:layout_above="@id/btnFinish"
+					    
+					    android:onClick="editClick"
+					    
+					    />
+					
+					<Button
+					    android:id="@+id/delete"
+					    android:layout_width="fill_parent"
+					    
+					    
+					    android:layout_height="wrap_content"
+					    android:text="Delete Item" 
+					    
+					    android:layout_above="@id/editClick"
+					    
+					    android:onClick="deleteClick"
+					    />
+		</RelativeLayout>		
 </LinearLayout>

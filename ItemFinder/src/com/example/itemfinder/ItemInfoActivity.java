@@ -1,34 +1,30 @@
 package com.example.itemfinder;
 
-
-import android.os.Bundle;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
+
 public class ItemInfoActivity extends Activity {
 
-	private static TextView itemTextView,
-							locationTextView,
-							keywordsTextView;
 	private Item item;
 					 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.activity_item_info);
+		setContentView(R.layout.activity_item_info);
 		Bundle data = getIntent().getExtras();
 		item = (Item) data.getParcelable("item");
 		
-//		itemTextView = (TextView) findViewById(R.id.itemTextView);
-//		locationTextView = (TextView) findViewById(R.id.locationTextView);
-//		keywordsTextView = (TextView) findViewById(R.id.keywordsTextView);
+		TextView itemTextView = (TextView) findViewById(R.id.ItemTextView);
+		TextView locationTextView = (TextView) findViewById(R.id.LocationTextView);
+		TextView keywordsTextView = (TextView) findViewById(R.id.KeywordsTextView);
 		
 		String name = item.getName();
 		String location = item.getLocation();
@@ -48,8 +44,9 @@ public class ItemInfoActivity extends Activity {
 	}
 	
 	public void editClick(View view){
-		Intent i = new Intent(view.getContext(), AddItemActivity.class);
-		startActivity(i);	
+		Intent intent = new Intent(view.getContext(), AddItemActivity.class);
+		intent.putExtra("item", item);
+		startActivity(intent);
 	}
 	
 	public void finishClick(View view){

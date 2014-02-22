@@ -16,13 +16,13 @@
 		        android:text="\t\t\tItem:" 
 	        />
 	       
-	       <EditText 
+	       <TextView
+	           android:id="@+id/ItemTextView"
 	           android:layout_width="fill_parent"
 		       android:layout_height="wrap_content"
 		     	       
-		       android:id="@+id/addItemEditText"
 		       
-		       android:hint="Item"
+		       
 	           
 	           />
 	       
@@ -33,37 +33,32 @@
 		      
 		        android:textSize="16sp"
 		        
-		        android:text="\t\t\tAdd Location"        
+		        android:text="\t\t\tLocation"        
 	        />
 	       
-	       <EditText 
+	       <TextView
+	           android:id="@+id/LocationTextView"
 	           android:layout_width="fill_parent"
 		       android:layout_height="wrap_content"
 		       
 		       
-		       android:id="@+id/addLocationEditText"
-		       
-		       android:hint="Add Location of Object"
-	           
 	           />
 	       
 	       <TextView 
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content"
-		        
 		        
 		        android:textSize="16sp"
 		        
 		        android:text="\t\t\tKeywords (Optional)"        
 	        />
 	       
-	       <EditText 
+	       <TextView
+	           android:id="@+id/KeywordsTextView"
 	           android:layout_width="fill_parent"
 		       android:layout_height="wrap_content"
 		      
-		       android:id="@+id/addKeywordsEditText"
 		       
-		       android:hint="Add Keywords"
 	           />
 	<RelativeLayout 
 	    android:layout_width="fill_parent"
