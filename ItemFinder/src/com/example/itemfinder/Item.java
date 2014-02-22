@@ -3,7 +3,7 @@ package com.example.itemfinder;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Item implements Parcelable {
+public class Item implements Comparable, Parcelable {
 
 	private String item_name;
 	private String item_location;
@@ -17,6 +17,12 @@ public class Item implements Parcelable {
 		item_name = a.item_name;
 		item_location = a.item_location;
 		keywords = a.keywords;
+	}
+	
+	public Item(String _name) {
+		item_name = _name;
+		item_location = "";
+		keywords = "";
 	}
 	
 	public Item(String _name, String _location){
@@ -61,6 +67,10 @@ public class Item implements Parcelable {
 		boolean keywords = a.keywords.equals(this.keywords);
 		return name && location && keywords;
 	}
+	
+	public String toString() {
+		return item_name;
+	}
 
 	//Parcelable methods
 	@Override
@@ -90,4 +100,12 @@ public class Item implements Parcelable {
     	item_location = in.readString();
     	keywords = in.readString();
     }
+
+	@Override
+	public int compareTo(Object another) {
+		if(another instanceof Item) {
+			return item_name.compareTo(((Item)another).getName());
+		}
+		return 0;
+	}
 }
