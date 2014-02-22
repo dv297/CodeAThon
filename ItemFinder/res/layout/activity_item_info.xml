@@ -13,7 +13,7 @@
 		        android:textSize="16sp"
 		        
 		        		        
-		        android:text="\t\t\tAdd item:" 
+		        android:text="\t\t\tItem:" 
 	        />
 	       
 	       <EditText 
@@ -22,7 +22,7 @@
 		     	       
 		       android:id="@+id/addItemEditText"
 		       
-		       android:hint="Add New Item"
+		       android:hint="Item"
 	           
 	           />
 	       
@@ -68,41 +68,46 @@
 	<RelativeLayout 
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"   
+	    
 	    >
-
-		<TableRow
-		    android:id="@+id/tableRow1"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content" 
-		    android:layout_alignParentBottom="true"
-		    >
-
 		    
 			<Button
-			    android:id="@+id/returnButton"
+			    android:id="@+id/btnFinish"
 			    
-			    android:layout_width="0dp"
-			    android:layout_weight="0.5"
+			    android:onClick="finishClick"
+			    
+			    android:layout_width="fill_parent"
 			    android:layout_height="wrap_content"
-			    android:text="Return" 
 			    
-			    android:onClick="cancelClick"
+			    android:layout_alignParentBottom="true"			    
+			    android:text="Return" />    		
+			
+			<Button 
+			    
+			    android:layout_height="wrap_content"
+			    android:layout_width="fill_parent"
+			    
+			    android:id="@+id/editClick"
+			    
+			    android:onClick="editClick"
+			    
+			    android:text="Edit"
+			    
+			    android:layout_above="@id/btnFinish"
 			    />
-		    
+			
 			<Button
-			    android:id="@+id/addItemButton"
-			    android:layout_width="0dp"
-			    android:layout_weight="0.5"
+			    android:id="@+id/delete"
+			    android:layout_width="fill_parent"
 			    
-			    
-			    
+			    android:onClick="deleteClick"
 			    
 			    android:layout_height="wrap_content"
-			    android:onClick="addItemSubmissionClick"
-			    android:text="@string/add_item_button" />
-
-
-		</TableRow>
+			    android:text="Delete Item" 
+			    
+			    android:layout_above="@id/editClick"
+			    />
+			
 	
 	</RelativeLayout>
 	

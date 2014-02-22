@@ -131,20 +131,25 @@ public class MainActivity extends Activity {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View arg1, int position,
 						long arg3) {
-					Intent i = new Intent(arg1.getContext(), ItemInfoActivity.class);
-			        final String item_name = (String) parent.getItemAtPosition(position);
-			        Item item = new Item();
-			        List<Item> item_list = ContentHolder.getDS().getAllItems();
-			        for(int x = 0; x<item_list.size(); x++){
-			        	if(item_name.equals(item_list.get(x).getName())){
-			        		item = item_list.get(x);
-			        	}
-			        }
-			        
-			        ItemInfoActivity.setValues(item.getName(), item.getLocation(), item.getKeywords());
-//					//GradeListActivity.setTitle(item);
-//					//GradeListActivity.setSubject(new Subject(ContentHolder.getStudent().getName(), item, "ABSOLUTE")); // FIX THIS TEMPORARY CODE.
-//					//startActivity(i);
+					if(position == 0){
+						Intent i = new Intent(arg1.getContext(), AddItemActivity.class);
+						startActivity(i);
+					}
+					else{
+						Intent i = new Intent(arg1.getContext(), ItemInfoActivity.class);
+				        final String item_name = (String) parent.getItemAtPosition(position);
+				        Item item = new Item();
+				        List<Item> item_list = ContentHolder.getDS().getAllItems();
+				        for(int x = 0; x<item_list.size(); x++){
+				        	if(item_name.equals(item_list.get(x).getName())){
+				        		item = item_list.get(x);
+				        	}
+				        }
+				        ItemInfoActivity.setValues(item.getName(), item.getLocation(), item.getKeywords());
+	//					//GradeListActivity.setTitle(item);
+	//					//GradeListActivity.setSubject(new Subject(ContentHolder.getStudent().getName(), item, "ABSOLUTE")); // FIX THIS TEMPORARY CODE.
+	//					//startActivity(i);
+					}//end else
 //					
 				}
 				
