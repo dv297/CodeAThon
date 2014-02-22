@@ -42,7 +42,7 @@ public class Database {
 	}
 	
 	public void deleteItem(String item) {
-		database.delete("items", "name = " + item, null);
+		database.delete("items", "name = ?", new String[]{item});
 	}
 
 	public void deleteItem(Item item) {

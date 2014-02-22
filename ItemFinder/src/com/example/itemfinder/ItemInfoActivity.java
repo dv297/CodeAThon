@@ -9,34 +9,33 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class ItemInfoActivity extends Activity {
 
-	private static TextView itemTextView,
-							locationTextView,
-							keywordsTextView;
 	private Item item;
 					 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.activity_item_info);
+		setContentView(R.layout.activity_item_info);
 		Bundle data = getIntent().getExtras();
 		item = (Item) data.getParcelable("item");
 		
-//		itemTextView = (TextView) findViewById(R.id.itemTextView);
-//		locationTextView = (TextView) findViewById(R.id.locationTextView);
-//		keywordsTextView = (TextView) findViewById(R.id.keywordsTextView);
+		EditText itemEditText = (EditText) findViewById(R.id.ItemEditText);
+		EditText locationEditText = (EditText) findViewById(R.id.LocationEditText);
+		EditText keywordsEditText = (EditText) findViewById(R.id.KeywordsEditText);
 		
 		String name = item.getName();
 		String location = item.getLocation();
 		String keywords = item.getKeywords();
 		
-		itemTextView.setText(name);
-		locationTextView.setText(location);
-		keywordsTextView.setText(keywords);
+		System.out.println(item);
+		itemEditText.setText(name);
+		locationEditText.setText(location);
+		keywordsEditText.setText(keywords);
 		
 	}
 

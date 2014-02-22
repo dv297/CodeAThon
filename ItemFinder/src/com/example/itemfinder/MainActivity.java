@@ -43,12 +43,14 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onRestart() {
 		super.onRestart();
+		 initList();
 	}
 
 
 	@Override
 	protected void onResume() {
 		super.onResume();
+		 initList();
 	}
 
 	//Context menu for holding a list item
@@ -152,9 +154,6 @@ public class MainActivity extends Activity {
 	 * The results of the AddItemActivity
 	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-		  if (requestCode == 1) {
-
 		     if(resultCode == RESULT_OK){      
 		    	 // This means that the user did everything to add an item.
 		    	 // Item adding is done in AddItemActivity
@@ -165,5 +164,4 @@ public class MainActivity extends Activity {
 		         //Write your code if there's no result
 		     }
 		  }
-	}
 }

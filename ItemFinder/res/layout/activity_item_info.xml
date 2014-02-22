@@ -16,15 +16,11 @@
 		        android:text="\t\t\tItem:" 
 	        />
 	       
-	       <EditText 
+	       <EditText
+	           android:id="@+id/ItemEditText"
 	           android:layout_width="fill_parent"
-		       android:layout_height="wrap_content"
-		     	       
-		       android:id="@+id/addItemEditText"
-		       
-		       android:hint="Item"
-	           
-	           />
+	           android:layout_height="wrap_content"
+	           android:hint="Item" />
 	       
 	       <TextView 
 		        android:layout_width="fill_parent"
@@ -36,16 +32,11 @@
 		        android:text="\t\t\tAdd Location"        
 	        />
 	       
-	       <EditText 
+	       <EditText
+	           android:id="@+id/LocationEditText"
 	           android:layout_width="fill_parent"
-		       android:layout_height="wrap_content"
-		       
-		       
-		       android:id="@+id/addLocationEditText"
-		       
-		       android:hint="Add Location of Object"
-	           
-	           />
+	           android:layout_height="wrap_content"
+	           android:hint="Add Location of Object" />
 	       
 	       <TextView 
 		        android:layout_width="fill_parent"
@@ -57,14 +48,12 @@
 		        android:text="\t\t\tKeywords (Optional)"        
 	        />
 	       
-	       <EditText 
+	       <EditText
+	           android:id="@+id/KeywordsEditText"
 	           android:layout_width="fill_parent"
-		       android:layout_height="wrap_content"
-		      
-		       android:id="@+id/addKeywordsEditText"
-		       
-		       android:hint="Add Keywords"
-	           />
+	           android:layout_height="wrap_content"
+	           android:hint="Add Keywords" />
+
 	<RelativeLayout 
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"   
