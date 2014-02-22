@@ -115,8 +115,7 @@
 			    
 			    
 			    android:layout_height="wrap_content"
-			    android:text="@string/add_item_button" />
-
+				/>
 
 		</TableRow>
 	

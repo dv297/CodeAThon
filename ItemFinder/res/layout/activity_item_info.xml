@@ -56,7 +56,6 @@
 		        android:textStyle="bold"
 		        
 		        android:id="@+id/keywordLabelTextView"
-		        android:text="  Keywords (Optional)"        
 	        />
 	       
 	       <TextView

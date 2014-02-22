@@ -11,7 +11,5 @@
     <string name="context_delete">Delete</string>
     
     <string name="search_edit_text_hint">Search for an item</string>
-    
-    <string name="add_item_button">Add Item</string>
 
 </resources>
