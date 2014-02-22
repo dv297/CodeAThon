@@ -1,4 +1,4 @@
-package com.example.itemfinder;
+package com.boeing.itemfinder;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -19,7 +19,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				   "name TEXT NOT NULL UNIQUE, " + 
 				   "location TEXT NOT NULL, " +
 				   "keywords TEXT NOT NULL" +
-				   "image TEXT" +
 				   ");");
 	}
 

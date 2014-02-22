@@ -1,8 +1,6 @@
-package com.example.itemfinder;
+package com.boeing.itemfinder;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 import android.content.ContentValues;
 import android.content.Context;

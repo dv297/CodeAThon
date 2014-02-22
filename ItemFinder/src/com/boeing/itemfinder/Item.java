@@ -1,4 +1,4 @@
-package com.example.itemfinder;
+package com.boeing.itemfinder;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -1,4 +1,4 @@
-package com.example.itemfinder;
+package com.boeing.itemfinder;
 
 import java.util.ArrayList;
 import java.util.Collections;

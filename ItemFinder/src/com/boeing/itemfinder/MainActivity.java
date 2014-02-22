@@ -1,7 +1,9 @@
-package com.example.itemfinder;
+package com.boeing.itemfinder;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.boeing.itemfinder.R;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -52,10 +54,6 @@ public class MainActivity extends Activity {
 				}
 			}
 		};
-		
-		ContentHolder.getDS().createItem(new Item("toilet", "bathroom"));
-		ContentHolder.getDS().createItem(new Item("sofa", "living room"));
-		ContentHolder.getDS().createItem(new Item("zebra", "barn"));
 		
 		ArrayList<Item> items_list = ContentHolder.getDS().getAllItems();
 		adapter = new ItemAdapter(this, items_list);
