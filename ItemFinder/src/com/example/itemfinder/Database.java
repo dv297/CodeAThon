@@ -48,7 +48,7 @@ public class Database {
 		values.put("keywords", item.getKeywords());
 		return database.update("table", values, "name = ?", new String[]{name}) == -1;
 	}
-	
+
 	public void deleteItem(String item) {
 		database.delete("items", "name = ?", new String[]{item});
 	}
