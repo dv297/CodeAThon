@@ -22,7 +22,11 @@
 		     	       
 		       android:id="@+id/addItemEditText"
 		       
+		       android:singleLine="true"
 		       android:hint="Item"
+		       
+		       android:focusable="true"
+		       android:focusableInTouchMode="true"
 	           
 	           />
 	       
@@ -45,12 +49,13 @@
 		       
 		       android:hint="Add Location of Object"
 	           
+	           android:focusable="true"
+		       android:focusableInTouchMode="true"
 	           />
 	       
 	       <TextView 
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content"
-		        
 		        
 		        android:textSize="16sp"
 		        
@@ -63,7 +68,11 @@
 		      
 		       android:id="@+id/addKeywordsEditText"
 		       
+		       android:singleLine="true"
 		       android:hint="Add Keywords"
+		       
+		       android:focusable="true"
+		       android:focusableInTouchMode="true"
 	           />
 	<RelativeLayout 
 	    android:layout_width="fill_parent"
