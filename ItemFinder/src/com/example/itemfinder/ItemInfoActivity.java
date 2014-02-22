@@ -62,7 +62,7 @@ public class ItemInfoActivity extends Activity {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO Auto-generated method stub
-				ContentHolder.getDS().deleteItem(item);
+				Tools.deleteItem(item);
 				finish();
 			}
 			

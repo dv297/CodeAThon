@@ -30,7 +30,7 @@ public class ItemAdapter extends BaseAdapter implements Filterable {
 	        	resultFilter.count = objectsOriginal.size();
 	        	resultFilter.values = objectsOriginal;
 	        } else {
-	        	szConstraint = constraint.toString();
+	        	szConstraint = constraint.toString().toLowerCase();
 	        	for(Item i : objectsOriginal) {
         			if(doesFilter(i)) {
 	        			resultList.add(i);
@@ -56,7 +56,7 @@ public class ItemAdapter extends BaseAdapter implements Filterable {
 	private boolean doesFilter(Item item) {
 		if(szConstraint == null)
 			return true;
-		return item.getName().contains(szConstraint) || item.getKeywords().contains(szConstraint);
+		return item.getName().toLowerCase().contains(szConstraint) || item.getKeywords().toLowerCase().contains(szConstraint);
 	}
 	
 	public ItemAdapter(Context context, ArrayList<Item> objects) {
@@ -78,19 +78,39 @@ public class ItemAdapter extends BaseAdapter implements Filterable {
 	
 	public void update(String name, Item item) {
 		int i = 0;
-		for(; i < objects.size(); i++) {
+		for(; i < objectsOriginal.size(); i++) {
 			if(name.equals(objectsOriginal.get(i).getName())) {
 				objectsOriginal.set(i, new Item(item));
 				Collections.sort(objectsOriginal);
 				break;
 			}
 		}
-		if(i == objects.size())
+		if(i == objectsOriginal.size()) {
 			return;
+		}
 		for(i = 0; i < objects.size(); i++) {
 			if(name.equals(objects.get(i).getName())) {
 				objects.set(i, new Item(item));
 				Collections.sort(objects);
+				break;
+			}
+		}
+	}
+	
+	public void remove(String name) {
+		int i = 0;
+		for(; i < objectsOriginal.size(); i++) {
+			if(name.equals(objectsOriginal.get(i).getName())) {
+				objectsOriginal.remove(i);
+				break;
+			}
+		}
+		if(i == objectsOriginal.size()) {
+			return;
+		}
+		for(i = 0; i < objects.size(); i++) {
+			if(name.equals(objects.get(i).getName())) {
+				objects.remove(i);
 				break;
 			}
 		}

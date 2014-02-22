@@ -19,8 +19,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
-
-	private ItemAdapter adapter; // Used to search for class list.
+	public static MainActivity activity;
+	public ItemAdapter adapter; // Used to search for class list.
+	
 	private ListView itemListView;
 	@SuppressWarnings("unused")
 	private ContentHolder content_holder; // This is necessary, DO NOT DELETE
@@ -29,13 +30,40 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        activity = this;
 		content_holder = new ContentHolder(getBaseContext());
-
-        initList();
         
         //Setup search
-        ListView list = (ListView)findViewById(R.id.itemListView);
-		registerForContextMenu(list);
+		AdapterView.OnItemClickListener clickListener = new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) {
+				if(position == 0) {
+					Intent intent = new Intent(view.getContext(), AddItemActivity.class);
+					intent.putExtra("name", ((EditText)findViewById(R.id.searchEditText)).getText());
+					startActivity(intent);
+				} else {
+					Intent intent = new Intent(view.getContext(), ItemInfoActivity.class);
+					Item item = ContentHolder.getDS().getItemByName((String)parent.getItemAtPosition(position));
+					intent.putExtra("item", item);
+			        startActivity(intent);
+				}
+			}
+		};
+		
+		ContentHolder.getDS().createItem(new Item("toilet", "bathroom"));
+		ContentHolder.getDS().createItem(new Item("sofa", "living room"));
+		ContentHolder.getDS().createItem(new Item("zebra", "barn"));
+		
+		ArrayList<Item> items_list = ContentHolder.getDS().getAllItems();
+		adapter = new ItemAdapter(this, items_list);
+		
+		itemListView = (ListView)findViewById(R.id.itemListView);
+		itemListView.setAdapter(adapter);
+		itemListView.setOnItemClickListener(clickListener);
+		registerForContextMenu(itemListView);
+		
         EditText search = (EditText)findViewById(R.id.searchEditText);
         search.addTextChangedListener(new TextWatcher() {
 
@@ -66,14 +94,14 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onRestart() {
 		super.onRestart();
-		 initList();
+		 //initList();
 	}
 
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		 initList();
+		 //initList();
 	}
 
 	//Context menu for holding a list item
@@ -130,35 +158,6 @@ public class MainActivity extends Activity {
 		}
 		return true;
 	}
-    
-	public void initList() {
-		AdapterView.OnItemClickListener clickListener = new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position,
-					long id) {
-				if(position == 0) {
-					Intent intent = new Intent(view.getContext(), AddItemActivity.class);
-					intent.putExtra("name", ((EditText)findViewById(R.id.searchEditText)).getText());
-					startActivity(intent);
-				} else {
-					Intent intent = new Intent(view.getContext(), ItemInfoActivity.class);
-					Item item = ContentHolder.getDS().getItemByName((String)parent.getItemAtPosition(position));
-					intent.putExtra("item", item);
-			        startActivity(intent);
-				}
-			}
-		};
-		
-		ContentHolder.getDS().createItem(new Item("toilet", "bathroom"));
-		ContentHolder.getDS().createItem(new Item("sofa", "living room"));
-		ContentHolder.getDS().createItem(new Item("zebra", "barn"));
-		
-		ArrayList<Item> items_list = ContentHolder.getDS().getAllItems();
-		itemListView = (ListView) findViewById(R.id.itemListView);
-		adapter = new ItemAdapter(this, items_list);
-		itemListView.setAdapter(adapter);
-		itemListView.setOnItemClickListener(clickListener);
-	}
 	
 	public void addButtonClick(View view) {
 		Intent intent = new Intent(view.getContext(), AddItemActivity.class);
@@ -174,8 +173,8 @@ public class MainActivity extends Activity {
 	    	// This means that the user did everything to add an item.
 	    	// Item adding is done in AddItemActivity
 	    	// We just have to refresh the list.
-	 		initList();
-	    } else if (resultCode == RESULT_CANCELED) {    
+	 		//initList();
+	    } else if (resultCode == RESULT_CANCELED) {
 	       //Write your code if there's no result
 	    }
 	}

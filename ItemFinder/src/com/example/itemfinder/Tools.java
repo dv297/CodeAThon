@@ -17,4 +17,31 @@ public class Tools {
 		});
 		builder.show();
 	}
+	
+	//These functions modify both the database and the list.
+	public static boolean addItem(Item item) {
+		if(ContentHolder.getDS().createItem(item)) {
+			return true;
+		}
+		MainActivity.activity.adapter.add(item);
+		return false;
+	}
+	
+	public static boolean updateItem(String name, Item item) {
+		if(ContentHolder.getDS().updateItem(name, item)) {
+			return true;
+		}
+		MainActivity.activity.adapter.update(name, item);
+		return false;
+	}
+	
+	public static void deleteItem(String name) {
+		ContentHolder.getDS().deleteItem(name);
+		MainActivity.activity.adapter.remove(name);
+	}
+	
+	public static void deleteItem(Item item) {
+		ContentHolder.getDS().deleteItem(item);
+		MainActivity.activity.adapter.remove(item.getName());
+	}
 }
