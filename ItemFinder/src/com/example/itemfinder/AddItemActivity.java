@@ -63,18 +63,18 @@ public class AddItemActivity extends Activity {
 		else{
 			if(beingEdited){
 				// True if you can't add the item in
-				if(ContentHolder.getDS().updateItem(item.getName(), new Item(item_name, item_location, keywords))){
+				if(Tools.updateItem(item.getName(), new Item(item_name, item_location, keywords))){
 					
 				}
 				else{
-					ContentHolder.getDS().updateItem(item.getName(), new Item(item_name, item_location, keywords));	
-					
+					Tools.updateItem(item.getName(), new Item(item_name, item_location, keywords));
 					setResult(RESULT_OK);
 					finish();
 				}
 			}
 			else{
-				ContentHolder.getDS().createItem(new Item(item_name, item_location, keywords));
+				//TODO check return value
+				Tools.addItem(new Item(item_name, item_location, keywords));
 				setResult(RESULT_OK);
 				finish();
 			}
