@@ -10,7 +10,9 @@ import android.widget.Toast;
 public class AddItemActivity extends Activity {
 
 	private boolean ready_to_submit = false; // Determines whether or not all of the forms are completed with correct values.
-
+	private boolean beingEdited;
+	private Item item;
+	
 	private EditText addItemEditText, addLocationEditText, addKeywordEditText;
 	
 	@Override
@@ -19,7 +21,7 @@ public class AddItemActivity extends Activity {
 		setContentView(R.layout.activity_add_item);
 		
 		Bundle data = getIntent().getExtras();
-		Item item = (Item) data.getParcelable("item");
+		item = (Item) data.getParcelable("item");
 		System.out.println("TAG: " + item);
 		
 		addItemEditText = (EditText) findViewById(R.id.ItemEditText);
@@ -30,6 +32,7 @@ public class AddItemActivity extends Activity {
 			addItemEditText.setText(item.getName());
 			addLocationEditText.setText(item.getLocation());
 			addKeywordEditText.setText(item.getKeywords());
+			beingEdited = true;
 		}
 	}
 
@@ -58,9 +61,22 @@ public class AddItemActivity extends Activity {
 			toast.show();
 		}
 		else{
-			ContentHolder.getDS().createItem(new Item(item_name, item_location, keywords));
-			setResult(RESULT_OK);
-			finish();
+			if(beingEdited){
+				// True if you can't add the item in
+				if(ContentHolder.getDS().updateItem(item.getName(), new Item(item_name, item_location, keywords))){
+					
+				}
+				else{
+					ContentHolder.getDS().updateItem(item.getName(), new Item(item_name, item_location, keywords));
+					setResult(RESULT_OK);
+					finish();
+				}
+			}
+			else{
+				ContentHolder.getDS().createItem(new Item(item_name, item_location, keywords));
+				setResult(RESULT_OK);
+				finish();
+			}
 		}
 	}
 	
