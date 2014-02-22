@@ -67,8 +67,10 @@ public class AddItemActivity extends Activity {
 					
 				}
 				else{
-					ContentHolder.getDS().updateItem(item.getName(), new Item(item_name, item_location, keywords));
+					Item updated_item = new Item(item_name, item_location, keywords);
+					ContentHolder.getDS().updateItem(item.getName(), updated_item);
 					setResult(RESULT_OK);
+					
 					finish();
 				}
 			}
